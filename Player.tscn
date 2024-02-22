@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpv4n83b6suay"]
+
+[ext_resource type="Texture2D" uid="uid://t84y2bsob2pe" path="res://assets/player_resized.png" id="1_p65yp"]
+
+[node name="Node2D" type="Node2D"]
+z_index = 1
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_p65yp")
