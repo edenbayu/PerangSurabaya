@@ -1,0 +1,15 @@
+buat project anda disini yak bang :D
+
+beberapa rekomendasi tutor favorit gweh:
+1. Saving n Loading System
+- https://www.youtube.com/watch?v=j7p7cGj20jU
+- https://www.youtube.com/watch?v=mI4HfyBdV-k
+- https://www.youtube.com/watch?v=rDGyw9z6Le8
+
+2. Godot OOP and Resource
+- https://www.youtube.com/watch?v=y3faMdIb2II&t=190s
+- https://www.youtube.com/watch?v=vzRZjM9MTGw&t=213s
+- https://www.youtube.com/watch?v=jQvcTiVwUgw&t=107s (autoload)
+
+3. Inventory System (barangkali tertarik buat bikin collectibles wkwk)
+- https://www.youtube.com/watch?v=qLrj_HWA9CI
