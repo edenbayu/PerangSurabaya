@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcbj38fvkj2b5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wdqu4"]
+radius = 13.9393
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7, 136)
+rotation = 0.208382
+scale = Vector2(5.39964, 2.52479)
+shape = SubResource("CircleShape2D_wdqu4")

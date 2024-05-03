@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwkd6adixbpcc"
-path="res://.godot/imported/tilese_resized.png-2e9bb99d3f6e2dc375419f3ed086c074.ctex"
+uid="uid://b7mqwj77mfgeo"
+path="res://.godot/imported/tilese_resized.png-6bae4ec538b0516080bd159c0e4190cc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilese_resized.png"
-dest_files=["res://.godot/imported/tilese_resized.png-2e9bb99d3f6e2dc375419f3ed086c074.ctex"]
+source_file="res://Resources/tilese_resized.png"
+dest_files=["res://.godot/imported/tilese_resized.png-6bae4ec538b0516080bd159c0e4190cc.ctex"]
 
 [params]
 

@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://crrclr6rtjda"]
+
+[ext_resource type="Script" path="res://Scripts/UI.gd" id="1_jrp3s"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jrp3s")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Soerjo: "
+
+[node name="Label2" type="Label" parent="."]
+clip_contents = true
+layout_mode = 1
+offset_left = 529.0
+offset_right = 586.0
+offset_bottom = 23.0
+text = "Jepang:"

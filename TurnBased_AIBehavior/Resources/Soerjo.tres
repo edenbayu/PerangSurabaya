@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Unit" load_steps=2 format=3 uid="uid://deeklyq7gyhha"]
+
+[ext_resource type="Script" path="res://Scripts/Unit.gd" id="1_3noll"]
+
+[resource]
+script = ExtResource("1_3noll")
+unit_name = "Soerjo"
+unit_level = 5
+move_range = 3

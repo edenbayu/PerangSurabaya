@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2i77peah4ldo"
-path="res://.godot/imported/tile_assets.png-e9bbc748c232361e474cc9a71022bfb5.ctex"
+uid="uid://ci0yghdvtlx0"
+path="res://.godot/imported/jepang.png-d3002c277c8d297830f1119fcd026378.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tile_assets.png"
-dest_files=["res://.godot/imported/tile_assets.png-e9bbc748c232361e474cc9a71022bfb5.ctex"]
+source_file="res://Sprites/jepang.png"
+dest_files=["res://.godot/imported/jepang.png-d3002c277c8d297830f1119fcd026378.ctex"]
 
 [params]
 
