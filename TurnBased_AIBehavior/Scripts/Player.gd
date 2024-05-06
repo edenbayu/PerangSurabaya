@@ -1,3 +1,5 @@
+@tool
+
 extends CharacterBody2D
 
 @onready var _sprite = $Sprite2D
@@ -17,9 +19,3 @@ extends CharacterBody2D
 		health = value
 		if util.unit_name == "Soerjo":
 			value += util.unit_level * 50
-
-func _ready():
-	print(health)
-
-func _process(delta):
-	pass
