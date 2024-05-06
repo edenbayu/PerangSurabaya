@@ -13,3 +13,9 @@ func draw(cell_start: Vector2, cell_end: Vector2) -> void:
 	for cell in current_path:
 		set_cell(0, cell, 0, Vector2(3,0))
 	print(current_path)
+
+func get_walkable_cells() -> Array:
+	var walkable = []
+	for cell in get_used_cells(0):
+		walkable.append(cell)
+	return walkable
