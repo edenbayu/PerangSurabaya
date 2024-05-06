@@ -12,6 +12,3 @@ func draw(cell_start: Vector2, cell_end: Vector2) -> void:
 	current_path = _pathfinder.calculate_point_path(cell_start, cell_end)
 	for cell in current_path:
 		set_cell(0, cell, 0, Vector2(3,0))
-
-func _process(delta):
-	var click_pos = get_local_mouse_position()
