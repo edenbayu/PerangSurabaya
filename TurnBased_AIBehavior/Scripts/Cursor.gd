@@ -28,6 +28,5 @@ func _unhandled_input(event: InputEvent) -> void:
 		emit_signal("moved", cell)
 	# Trying to select something in a cell.
 	elif event.is_action_pressed("click") or event.is_action_pressed("ui_accept"):
-		print(cell)
 		emit_signal("accept_pressed", cell)
 # Called every frame. 'delta' is the elapsed time since the previous frame.

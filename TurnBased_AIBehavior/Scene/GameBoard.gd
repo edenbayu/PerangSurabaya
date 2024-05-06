@@ -16,6 +16,7 @@ func _check_hoverable_tiles(cell: Vector2) -> void:
 		cursor._sprite.visible = false
 	is_within_map = cursor._sprite.visible 
 
+##Function yang terhubung dengan cursor click
 func _select_unit(cell: Vector2) -> void:
-	var mapped_pos = unitPath.local_tomap(cell)
+	var mapped_pos = unitPath.local_to_map(cell)
 	unitPath.draw(Vector2(0,0), mapped_pos)

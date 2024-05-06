@@ -10,6 +10,7 @@ func initialize(walkable_cells: Array) -> void:
 
 func draw(cell_start: Vector2, cell_end: Vector2) -> void:
 	current_path = _pathfinder.calculate_point_path(cell_start, cell_end)
+	print(current_path)
 	for cell in current_path:
 		set_cell(0, cell, 0, Vector2(3,0))
 	print(current_path)

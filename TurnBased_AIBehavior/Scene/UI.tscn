@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://crrclr6rtjda"]
+[gd_scene load_steps=6 format=3 uid="uid://crrclr6rtjda"]
 
 [ext_resource type="Script" path="res://Scripts/UI.gd" id="1_jrp3s"]
+[ext_resource type="Script" path="res://Scene/Label.gd" id="2_j17w0"]
+[ext_resource type="Texture2D" uid="uid://c5qjg4mtr786" path="res://icon.svg" id="2_yvjpa"]
+[ext_resource type="FontVariation" uid="uid://50xvyymn28l4" path="res://PixelFont.tres" id="3_hqyk1"]
+[ext_resource type="FontFile" uid="uid://b13x4vqusjxd0" path="res://I-pixel-u.ttf" id="5_rqoqf"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -16,6 +20,25 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Soerjo: "
+script = ExtResource("2_j17w0")
+style = ExtResource("3_hqyk1")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 28.0
+offset_right = 193.0
+offset_bottom = 156.0
+texture_normal = ExtResource("2_yvjpa")
+
+[node name="Button" type="Button" parent="TextureButton"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -3.0
+offset_right = 134.0
+offset_bottom = 133.0
+text = "SAVE"
+flat = true
 
 [node name="Label2" type="Label" parent="."]
 clip_contents = true
@@ -23,4 +46,5 @@ layout_mode = 1
 offset_left = 529.0
 offset_right = 586.0
 offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("5_rqoqf")
 text = "Jepang:"
