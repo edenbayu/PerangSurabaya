@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0l1amfiyltnr"]
+
+[ext_resource type="Script" path="res://Control.gd" id="1_mjbxy"]
+[ext_resource type="AudioStream" uid="uid://b615tv65egh5h" path="res://pianos-by-jtwayne-7-174717.mp3" id="2_rbcff"]
+[ext_resource type="AudioStream" uid="uid://c4h4osyxle1ny" path="res://sunflower-street-drumloop-85bpm-163900.mp3" id="3_pv54q"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("sound", "sound2")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_mjbxy")
+sound = NodePath("AudioStreamPlayer2D")
+sound2 = NodePath("AudioStreamPlayer2D2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label2" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "SFX"
+
+[node name="HSlider" type="HSlider" parent="Control/VBoxContainer"]
+layout_mode = 2
+min_value = -30.0
+max_value = 0.0
+
+[node name="Label3" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Soundmaster"
+
+[node name="HSlider2" type="HSlider" parent="Control/VBoxContainer"]
+layout_mode = 2
+min_value = -30.0
+max_value = 0.0
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Music"
+
+[node name="HSlider3" type="HSlider" parent="Control/VBoxContainer"]
+layout_mode = 2
+min_value = -30.0
+max_value = 0.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Control"]
+scale = Vector2(0.997409, 1.01161)
+stream = ExtResource("2_rbcff")
+volume_db = 24.0
+bus = &"Music"
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="Control"]
+stream = ExtResource("3_pv54q")
+bus = &"SFX"
+
+[connection signal="value_changed" from="Control/VBoxContainer/HSlider" to="Control" method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="Control/VBoxContainer/HSlider2" to="Control" method="_ngubah_volume_sfx"]
+[connection signal="value_changed" from="Control/VBoxContainer/HSlider3" to="Control" method="_on_h_slider_3_value_changed"]
