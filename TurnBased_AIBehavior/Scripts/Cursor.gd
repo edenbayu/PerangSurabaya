@@ -2,7 +2,6 @@ class_name Cursor
 extends Node2D
 
 @onready var _timer: Timer = $Timer
-@onready var _sprite: Sprite2D = $Sprite2D
 #Emitted ketika melakukan click pada cell yang sedang ditunjuk
 signal accept_pressed(cell)
 #Emitted ketika kursor bergerak ke cell baru

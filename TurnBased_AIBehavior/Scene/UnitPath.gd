@@ -8,15 +8,21 @@ var _pathfinder: Pathfinder
 func initialize(walkable_cells: Array) -> void:
 	_pathfinder = Pathfinder.new(grid, walkable_cells)
 
-func draw(cell_start: Vector2, cell_end: Vector2) -> void:
-	current_path = _pathfinder.calculate_point_path(cell_start, cell_end)
-	print(current_path)
-	for cell in current_path:
-		set_cell(0, cell, 0, Vector2(3,0))
-	print(current_path)
+func draw(cells: Array) -> void:
+	clear()
+	for cell in cells:
+		set_cell(0, cell, 1, Vector2i(0,0))
+
+#func test_get_cell_id() -> Array:
+	#var cell_start = Vector2(0,0)
+	#var cell_end = Vector2(2,2)
+	#return _pathfinder.calculate_point_paths(cell_start, cell_end)
 
 func get_walkable_cells() -> Array:
-	var walkable = []
-	for cell in get_used_cells(0):
-		walkable.append(cell)
-	return walkable
+	var map_rect = Rect2i(grid.start_rect, grid.tilemap_size)
+	var vectors_inside := []
+	 # Iterate over each point inside the rectangle
+	for x in range(map_rect.position.x, map_rect.position.x + map_rect.size.x):
+		for y in range(map_rect.position.y, map_rect.position.y + map_rect.size.y):
+			vectors_inside.append(Vector2i(x, y))
+	return vectors_inside

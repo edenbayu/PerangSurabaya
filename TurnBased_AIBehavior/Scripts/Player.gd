@@ -1,5 +1,5 @@
 @tool
-
+class_name Unit
 extends CharacterBody2D
 
 @onready var _sprite = $Sprite2D
@@ -12,10 +12,17 @@ extends CharacterBody2D
 		_sprite.texture = value
 #setter getter
 
-@export var util: Resource
+@export var move_range := 4
 
-@export var health: int:
+var is_selected := false:
 	set(value):
-		health = value
-		if util.unit_name == "Soerjo":
-			value += util.unit_level * 50
+		is_selected = value
+		if is_selected:
+			pass
+		else:
+			pass
+
+var _is_walking := false:
+	set(value):
+		_is_walking = value
+		set_process(_is_walking)
