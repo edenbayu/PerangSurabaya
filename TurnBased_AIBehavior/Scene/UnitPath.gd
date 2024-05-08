@@ -13,12 +13,12 @@ func draw(cells: Array) -> void:
 	for cell in cells:
 		set_cell(0, cell, 1, Vector2i(0,0))
 
-#func test_get_cell_id() -> Array:
-	#var cell_start = Vector2(0,0)
-	#var cell_end = Vector2(2,2)
-	#return _pathfinder.calculate_point_paths(cell_start, cell_end)
+## Finds and draws the path between `cell_start` and `cell_end`
+func get_walk_path(cell_start: Vector2, cell_end: Vector2) -> void:
+	clear()
+	current_path = _pathfinder.calculate_point_paths(cell_start, cell_end)
 
-#PR NIII
+
 func get_walkable_cells() -> Array:
 	var map_rect = Rect2i(grid.start_rect, grid.tilemap_size)
 	var vectors_inside :Array = []

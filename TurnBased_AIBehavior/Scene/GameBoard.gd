@@ -1,7 +1,7 @@
 class_name GameBoard
 extends Node2D
 
-const DIRECTIONS = [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]
+const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 
 @onready var unitPath: UnitPath = $UnitPath
 @onready var cursor = $Cursor
@@ -37,7 +37,6 @@ func _initiallize_unit_pos() -> void:
 		if not unit:
 			continue
 		unit.cell = unitPath.local_to_map(unit.position)
-		print(typeof(unit.cell))
 
 func _unhandled_input(event: InputEvent):
 	if _active_unit and event.is_action("ui_cancel"):
@@ -58,15 +57,12 @@ func _check_hoverable_tiles(cell: Vector2) -> void:
 func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 	var mapped_cell: Vector2 = unitPath.local_to_map(cell)
 	if _is_clickable:
-		#_walkable_cells.append(_flood_fill(unitPath.local_to_map(cell), 2))
-		#unitPath.initialize(_walkable_cells)
-		#unitPath.draw(_flood_fill(unitPath.local_to_map(cell), 2))
-		
 		if not _active_unit:
 			_select_unit(mapped_cell)
-			print(_walkable_cells)
 		elif _active_unit.is_selected:
 			_move_active_unit(mapped_cell)
+			_deselect_active_unit()
+			_clear_active_unit()
 
 ##Function yang terhubung dengan cursor click
 func _select_unit(cell: Vector2) -> void:
@@ -85,7 +81,7 @@ func get_walkable_cells(unit: Unit) -> Array:
 	return _flood_fill(unit.cell, unit.move_range)
 
 ## Returns an array with all the coordinates of walkable cells based on the `max_distance`.
-func _flood_fill(cell: Vector2i, max_distance: int) -> Array:
+func _flood_fill(cell: Vector2, max_distance: int) -> Array:
 	var array := []
 	var stack := [cell]
 	while not stack.size() == 0:
@@ -100,7 +96,7 @@ func _flood_fill(cell: Vector2i, max_distance: int) -> Array:
 
 		array.append(current)
 		for direction in DIRECTIONS:
-			var coordinates: Vector2i = current + direction
+			var coordinates: Vector2 = current + direction
 			if is_occupied(coordinates) or is_outside_map(coordinates):
 				continue
 			if coordinates in array:
@@ -111,6 +107,7 @@ func _flood_fill(cell: Vector2i, max_distance: int) -> Array:
 				continue
 
 			stack.append(coordinates)
+	array.pop_front()
 	return array
 
 func is_outside_map(cell: Vector2i) -> bool:
@@ -124,14 +121,17 @@ func is_occupied(cell: Vector2) -> bool:
 func _move_active_unit(new_cell: Vector2) -> void:
 	if is_occupied(new_cell) or not new_cell in _walkable_cells:
 		return
-	# warning-ignore:return_value_discarded
-	_units.erase(_active_unit.cell)
-	_units[new_cell] = _active_unit
-	_deselect_active_unit()
-	_clear_active_unit()
-	#_active_unit.walk_along(unitPath.current_path)
-	#await _active_unit.walk_finished
-	#_clear_active_unit()
+	unitPath.get_walk_path(_active_unit.cell, new_cell)
+	var new_path := []
+	for i in unitPath.current_path:
+		i = unitPath.map_to_local(i)
+		new_path.append(i) 
+	_active_unit.walk(new_path)
+
+func _process(delta):
+	if _active_unit:
+		_active_unit.cell = unitPath.local_to_map(_active_unit.position)
+		print(_active_unit.cell)
 
 ## Deselects the active unit, clearing the cells overlay and interactive path drawing.
 func _deselect_active_unit() -> void:

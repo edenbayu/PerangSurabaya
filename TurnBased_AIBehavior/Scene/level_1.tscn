@@ -58,6 +58,9 @@ layer_0/tile_data = PackedInt32Array(-131073, 0, 0, -65537, 0, 0, -1, 0, 0, 6553
 [node name="GameBoard" type="Node2D" parent="."]
 script = ExtResource("1_hyekb")
 
+[node name="TileMap" type="TileMap" parent="GameBoard"]
+format = 2
+
 [node name="UnitPath" type="TileMap" parent="GameBoard"]
 y_sort_enabled = true
 tile_set = SubResource("TileSet_agrgs")
@@ -70,23 +73,28 @@ grid = ExtResource("4_diw5h")
 
 [node name="Soerjo" parent="GameBoard/Player" instance=ExtResource("1_lscfy")]
 move_range = 2
+move_speed = null
 
 [node name="Ling" parent="GameBoard/Player" instance=ExtResource("1_lscfy")]
 position = Vector2(323, 147)
 skin = ExtResource("8_vuxbj")
 move_range = 3
+move_speed = null
 
 [node name="Enemy" type="Node2D" parent="GameBoard"]
 
 [node name="Enemy1" parent="GameBoard/Enemy" instance=ExtResource("1_lscfy")]
 position = Vector2(146, 551)
 skin = ExtResource("8_2j01w")
+move_speed = null
 
 [node name="CharacterBody2D" parent="GameBoard/Enemy" instance=ExtResource("1_lscfy")]
 visible = false
+move_speed = null
 
 [node name="CharacterBody2D2" parent="GameBoard/Enemy" instance=ExtResource("1_lscfy")]
 visible = false
+move_speed = null
 
 [node name="Cursor" parent="GameBoard" instance=ExtResource("11_saeha")]
 
