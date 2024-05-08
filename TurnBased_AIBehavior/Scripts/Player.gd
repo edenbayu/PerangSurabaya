@@ -40,13 +40,13 @@ func walk(paths: Array):
 	if paths.is_empty():
 		_is_walking = false
 		return
-	else:
-		paths.pop_front()
-		_is_walking = true
-	var target_pos = paths.front()
-	global_position = global_position.move_toward(target_pos, move_speed)
-	if global_position == target_pos:
-		paths.pop_front()
+	#else:
+		#paths.pop_front()
+		#_is_walking = true
+	#var target_pos = paths.front()
+	#global_position = global_position.move_toward(target_pos, move_speed)
+	#if global_position == target_pos:
+		#paths.pop_front()
 	#_is_walking = true
 	#print(paths)
 	#while _is_walking:
@@ -57,3 +57,7 @@ func walk(paths: Array):
 
 func _process(delta: float):
 	pass
+	if not is_selected:
+		_sprite.modulate = Color(0.55, 0.55, 0.55)
+	else:
+		_sprite.modulate = Color(1, 1, 1)
