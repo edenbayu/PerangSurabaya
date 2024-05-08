@@ -118,23 +118,23 @@ func is_occupied(cell: Vector2) -> bool:
 
 ##Move active unit based on it's movement area, initializing pathfinding, executing walk function
 func _move_active_unit(new_cell: Vector2) -> void:
-	print(new_cell)
 	if is_occupied(new_cell) or not new_cell in _walkable_cells:
 		return
 	unitPath.get_walk_path(_active_unit.cell, new_cell)
+	unitPath.current_path.remove_at(0) #Makes sure that the current path isn't walkable
 	var new_path := []
 	for i in unitPath.current_path:
 		i = unitPath.map_to_local(i)
-		new_path.append(i) 
-	new_path.pop_front() #Makes sure that the current path isn't walkable
+		new_path.append(i)
+	_active_unit.walk_coordinates = new_path 
 	_units.erase(_active_unit.cell)
 	_units[new_cell] = _active_unit
 	_deselect_active_unit()
-	_active_unit.walk(new_path, new_cell)
+	_active_unit.walk(new_cell)
 	_clear_active_unit()
 
 func _process(delta):
-	print(_units)
+	print(_active_unit)
 
 ## Deselects the active unit, clearing the cells overlay and interactive path drawing.
 func _deselect_active_unit() -> void:

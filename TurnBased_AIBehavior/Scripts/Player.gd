@@ -12,6 +12,11 @@ var cell := Vector2.ZERO:
 	set(value):
 		cell = value
 
+## Array that contains walking paths.
+var walk_coordinates := []:
+	set(value):
+		walk_coordinates = value
+
 @export var skin: Texture:
 	set(value):
 		skin = value
@@ -27,26 +32,25 @@ var is_selected := false:
 	set(value):
 		is_selected = value
 		if is_selected:
-			pass
+			_sprite.modulate = Color(1, 1, 1)
 		else:
-			pass
+			_sprite.modulate = Color(0.70, 0.70, 0.70)
 
 var _is_walking := false:
 	set(value):
 		_is_walking = value
 		set_process(_is_walking)
 
-func walk(paths: Array, new_cell: Vector2):
-	if paths.is_empty():
-		_is_walking = false
-		return
+func walk(new_cell: Vector2):
+	_is_walking = true
 	cell = new_cell
-	for path in paths:
-		position = position.move_toward(path, move_speed)
 
 func _process(delta: float):
-	#Modulasi jika selected  / not selected
-	if not is_selected:
-		_sprite.modulate = Color(0.70, 0.70, 0.70)
-	else:
-		_sprite.modulate = Color(1, 1, 1)
+	#Process unit walk code
+	if walk_coordinates.is_empty():
+		_is_walking = false
+	if _is_walking:
+		var target_pos = walk_coordinates.front()
+		position = position.move_toward(target_pos, move_speed*delta)
+		if position == target_pos:
+			walk_coordinates.pop_front()
