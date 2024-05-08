@@ -19,7 +19,7 @@ func _init(grid: Grid, walkable_cells: Array) -> void:
 	 # Iterate over each point inside the rectangle
 	for x in range(_astar.region.position.x, _astar.region.position.x + _astar.region.size.x):
 		for y in range(_astar.region.position.y, _astar.region.position.y + _astar.region.size.y):
-			vectors_inside.append(Vector2i(x, y))
+			vectors_inside.append(Vector2(x, y))
 	
 	##Iterasi untuk seluruh points dalam grid yang bukan termasuk walkable 
 	##PR BENARKAN KODINGAN DIBAWAH INI##
@@ -28,10 +28,10 @@ func _init(grid: Grid, walkable_cells: Array) -> void:
 			#_astar.set_point_solid(cell)
 	#print("pathfinder initialized!")
 	#
-	##This is a code to check the solid points inside used cells
+	###This is a code to check the solid points inside used cells
 	#for cell in vectors_inside:
 		#if not _astar.is_point_solid(cell):
-			#print("Non-Solid points: ", cell)
+			#print("Non solid-cell:", cell)
 
 func calculate_point_paths(start: Vector2, end: Vector2)-> PackedVector2Array:
 	return _astar.get_id_path(start, end)

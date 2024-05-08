@@ -18,9 +18,10 @@ func draw(cells: Array) -> void:
 	#var cell_end = Vector2(2,2)
 	#return _pathfinder.calculate_point_paths(cell_start, cell_end)
 
+#PR NIII
 func get_walkable_cells() -> Array:
 	var map_rect = Rect2i(grid.start_rect, grid.tilemap_size)
-	var vectors_inside := []
+	var vectors_inside :Array = []
 	 # Iterate over each point inside the rectangle
 	for x in range(map_rect.position.x, map_rect.position.x + map_rect.size.x):
 		for y in range(map_rect.position.y, map_rect.position.y + map_rect.size.y):

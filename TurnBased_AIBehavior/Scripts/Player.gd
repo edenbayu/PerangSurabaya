@@ -4,6 +4,11 @@ extends CharacterBody2D
 
 @onready var _sprite = $Sprite2D
 
+## Coordinates of the current cell the cursor moved to.
+var cell := Vector2.ZERO:
+	set(value):
+		cell = value
+
 @export var skin: Texture:
 	set(value):
 		skin = value
