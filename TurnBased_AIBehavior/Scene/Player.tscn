@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcbj38fvkj2b5"]
+[gd_scene load_steps=6 format=3 uid="uid://bcbj38fvkj2b5"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_2t8lw"]
 [ext_resource type="Texture2D" uid="uid://dvyiuno65ptv3" path="res://Sprites/anton.png" id="2_4sbd7"]
@@ -6,11 +6,22 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_wdqu4"]
 radius = 13.9393
 
+[sub_resource type="Animation" id="Animation_2mx2d"]
+resource_name = "soerjo_idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_15xbu"]
+_data = {
+"soerjo_idle": SubResource("Animation_2mx2d")
+}
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
+z_index = 1
 script = ExtResource("1_2t8lw")
 skin = ExtResource("2_4sbd7")
+move_speed = 500
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.7, 0.7, 0.7, 1)
 position = Vector2(7, -155)
 texture = ExtResource("2_4sbd7")
 
@@ -19,3 +30,8 @@ position = Vector2(7, 0)
 rotation = 0.208382
 scale = Vector2(5.39964, 2.52479)
 shape = SubResource("CircleShape2D_wdqu4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_15xbu")
+}

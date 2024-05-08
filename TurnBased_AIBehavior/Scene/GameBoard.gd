@@ -61,8 +61,6 @@ func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 			_select_unit(mapped_cell)
 		elif _active_unit.is_selected:
 			_move_active_unit(mapped_cell)
-			_deselect_active_unit()
-			_clear_active_unit()
 
 ##Function yang terhubung dengan cursor click
 func _select_unit(cell: Vector2) -> void:
@@ -70,7 +68,7 @@ func _select_unit(cell: Vector2) -> void:
 		return
 
 	_active_unit = _units[cell]
-	print(_active_unit)
+	print(_active_unit.cell)
 	_active_unit.is_selected = true
 	_walkable_cells = get_walkable_cells(_active_unit)
 	unitPath.draw(_walkable_cells)
@@ -118,7 +116,9 @@ func is_outside_map(cell: Vector2i) -> bool:
 func is_occupied(cell: Vector2) -> bool:
 	return _units.has(cell)
 
+##Move active unit based on it's movement area, initializing pathfinding, executing walk function
 func _move_active_unit(new_cell: Vector2) -> void:
+	print(new_cell)
 	if is_occupied(new_cell) or not new_cell in _walkable_cells:
 		return
 	unitPath.get_walk_path(_active_unit.cell, new_cell)
@@ -126,12 +126,15 @@ func _move_active_unit(new_cell: Vector2) -> void:
 	for i in unitPath.current_path:
 		i = unitPath.map_to_local(i)
 		new_path.append(i) 
-	_active_unit.walk(new_path)
+	new_path.pop_front() #Makes sure that the current path isn't walkable
+	_units.erase(_active_unit.cell)
+	_units[new_cell] = _active_unit
+	_deselect_active_unit()
+	_active_unit.walk(new_path, new_cell)
+	_clear_active_unit()
 
 func _process(delta):
-	if _active_unit:
-		_active_unit.cell = unitPath.local_to_map(_active_unit.position)
-		print(_active_unit.cell)
+	print(_units)
 
 ## Deselects the active unit, clearing the cells overlay and interactive path drawing.
 func _deselect_active_unit() -> void:

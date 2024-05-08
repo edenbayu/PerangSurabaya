@@ -21,7 +21,7 @@ var cell := Vector2.ZERO:
 #setter getter
 
 @export var move_range := 4
-@export var move_speed := 500
+@export var move_speed := 5
 
 var is_selected := false:
 	set(value):
@@ -36,28 +36,17 @@ var _is_walking := false:
 		_is_walking = value
 		set_process(_is_walking)
 
-func walk(paths: Array):
+func walk(paths: Array, new_cell: Vector2):
 	if paths.is_empty():
 		_is_walking = false
 		return
-	#else:
-		#paths.pop_front()
-		#_is_walking = true
-	#var target_pos = paths.front()
-	#global_position = global_position.move_toward(target_pos, move_speed)
-	#if global_position == target_pos:
-		#paths.pop_front()
-	#_is_walking = true
-	#print(paths)
-	#while _is_walking:
-		#var target_pos = paths.front()
-		#paths.pop_front()
-		#global_position = global_position.move_toward(target_pos, move_speed)
-
+	cell = new_cell
+	for path in paths:
+		position = position.move_toward(path, move_speed)
 
 func _process(delta: float):
-	pass
+	#Modulasi jika selected  / not selected
 	if not is_selected:
-		_sprite.modulate = Color(0.55, 0.55, 0.55)
+		_sprite.modulate = Color(0.70, 0.70, 0.70)
 	else:
 		_sprite.modulate = Color(1, 1, 1)
