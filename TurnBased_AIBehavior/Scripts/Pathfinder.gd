@@ -11,8 +11,8 @@ func _init(grid: Grid, walkable_cells: Array) -> void:
 	_astar.region = map_rect
 	_astar.cell_size = _grid.cell_size
 	_astar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
-	_astar.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
-	_astar.default_estimate_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
+	_astar.default_compute_heuristic = AStarGrid2D.HEURISTIC_EUCLIDEAN
+	_astar.default_estimate_heuristic = AStarGrid2D.HEURISTIC_EUCLIDEAN
 	_astar.update()
 	
 	var vectors_inside = []

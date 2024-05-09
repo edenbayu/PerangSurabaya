@@ -49,6 +49,7 @@ func _process(delta: float):
 	#Process unit walk code
 	if walk_coordinates.is_empty():
 		_is_walking = false
+		emit_signal("walk_finished")
 	if _is_walking:
 		var target_pos = walk_coordinates.front()
 		position = position.move_toward(target_pos, move_speed*delta)

@@ -68,7 +68,6 @@ func _select_unit(cell: Vector2) -> void:
 		return
 
 	_active_unit = _units[cell]
-	print(_active_unit.cell)
 	_active_unit.is_selected = true
 	_walkable_cells = get_walkable_cells(_active_unit)
 	unitPath.draw(_walkable_cells)
@@ -131,10 +130,8 @@ func _move_active_unit(new_cell: Vector2) -> void:
 	_units[new_cell] = _active_unit
 	_deselect_active_unit()
 	_active_unit.walk(new_cell)
+	await _active_unit.walk_finished
 	_clear_active_unit()
-
-func _process(delta):
-	print(_active_unit)
 
 ## Deselects the active unit, clearing the cells overlay and interactive path drawing.
 func _deselect_active_unit() -> void:
