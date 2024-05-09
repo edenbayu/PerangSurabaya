@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=3 format=3 uid="uid://bdydtvur8kym5"]
+
+[ext_resource type="Script" path="res://Scripts/UnitData.gd" id="1_2n4y0"]
+[ext_resource type="Texture2D" uid="uid://cc5kcoo7ga4ok" path="res://Sprites/Ling.png" id="2_f8arq"]
+
+[resource]
+script = ExtResource("1_2n4y0")
+unit_name = "Ling"
+unit_health = 80
+move_speed = 600
+move_range = 5
+skin = ExtResource("2_f8arq")

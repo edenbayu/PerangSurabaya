@@ -5,6 +5,7 @@ extends CharacterBody2D
 ## Emitted when the unit reached the end of a path along which it was walking.
 signal walk_finished
 
+@export var Data : UnitData
 @onready var _sprite = $Sprite2D
 
 ## Coordinates of the current cell the cursor moved to.
@@ -40,6 +41,11 @@ var _is_walking := false:
 	set(value):
 		_is_walking = value
 		set_process(_is_walking)
+
+func _ready():
+	_sprite.texture = Data.skin
+	move_range = Data.move_range
+	move_speed = Data.move_speed
 
 func walk(new_cell: Vector2):
 	_is_walking = true

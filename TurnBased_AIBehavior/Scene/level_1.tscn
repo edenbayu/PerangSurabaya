@@ -1,14 +1,15 @@
-[gd_scene load_steps=15 format=3 uid="uid://ccb0nkt8llyhg"]
+[gd_scene load_steps=16 format=3 uid="uid://ccb0nkt8llyhg"]
 
-[ext_resource type="Script" path="res://Scene/GameBoard.gd" id="1_hyekb"]
+[ext_resource type="Script" path="res://Scripts/GameBoard.gd" id="1_hyekb"]
 [ext_resource type="PackedScene" uid="uid://bcbj38fvkj2b5" path="res://Scene/Player.tscn" id="1_lscfy"]
 [ext_resource type="Texture2D" uid="uid://b7mqwj77mfgeo" path="res://Resources/tilese_resized.png" id="1_saa2u"]
-[ext_resource type="Script" path="res://Scene/UnitPath.gd" id="2_3478f"]
+[ext_resource type="Script" path="res://Scripts/UnitPath.gd" id="2_3478f"]
 [ext_resource type="Texture2D" uid="uid://u7p5s4syem8y" path="res://Sprites/UnitPath.png" id="3_od8ng"]
 [ext_resource type="Resource" uid="uid://c3ides7pfvous" path="res://Resources/Grid.tres" id="4_diw5h"]
+[ext_resource type="Resource" uid="uid://dj7f4hhool2j0" path="res://Resources/UnitData.tres" id="7_aj810"]
 [ext_resource type="PackedScene" uid="uid://crrclr6rtjda" path="res://Scene/UI.tscn" id="7_tpfhc"]
-[ext_resource type="Texture2D" uid="uid://dtv0kmyg46bva" path="res://Sprites/Jepun.png" id="8_2j01w"]
-[ext_resource type="Texture2D" uid="uid://cc5kcoo7ga4ok" path="res://Sprites/Ling.png" id="8_vuxbj"]
+[ext_resource type="Resource" uid="uid://bdydtvur8kym5" path="res://Resources/LingData.tres" id="8_6s8qo"]
+[ext_resource type="Resource" uid="uid://b0i0uk17yp08v" path="res://Resources/EnemyPawn.tres" id="9_msqev"]
 [ext_resource type="PackedScene" uid="uid://cx7v1v1x1dgib" path="res://Scene/Cursor.tscn" id="11_saeha"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vsyxm"]
@@ -72,24 +73,21 @@ grid = ExtResource("4_diw5h")
 [node name="Player" type="Node2D" parent="GameBoard"]
 
 [node name="Soerjo" parent="GameBoard/Player" instance=ExtResource("1_lscfy")]
-move_range = 2
+Data = ExtResource("7_aj810")
 
 [node name="Ling" parent="GameBoard/Player" instance=ExtResource("1_lscfy")]
 position = Vector2(323, 147)
-skin = ExtResource("8_vuxbj")
+Data = ExtResource("8_6s8qo")
 move_range = 5
+move_speed = 600
 
 [node name="Enemy" type="Node2D" parent="GameBoard"]
 
 [node name="Enemy1" parent="GameBoard/Enemy" instance=ExtResource("1_lscfy")]
 position = Vector2(146, 551)
-skin = ExtResource("8_2j01w")
-
-[node name="CharacterBody2D" parent="GameBoard/Enemy" instance=ExtResource("1_lscfy")]
-visible = false
-
-[node name="CharacterBody2D2" parent="GameBoard/Enemy" instance=ExtResource("1_lscfy")]
-visible = false
+Data = ExtResource("9_msqev")
+move_range = 3
+move_speed = 500
 
 [node name="Cursor" parent="GameBoard" instance=ExtResource("11_saeha")]
 
@@ -97,12 +95,12 @@ visible = false
 position = Vector2(533, 330)
 zoom = Vector2(0.25, 0.25)
 
-[node name="Control" parent="." instance=ExtResource("7_tpfhc")]
+[node name="Control" parent="Camera2D" instance=ExtResource("7_tpfhc")]
 visible = false
-offset_left = -584.0
-offset_top = -288.0
-offset_right = -584.0
-offset_bottom = -288.0
+offset_left = -1117.0
+offset_top = -618.0
+offset_right = -1117.0
+offset_bottom = -618.0
 
 [connection signal="accept_pressed" from="GameBoard/Cursor" to="GameBoard" method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="GameBoard/Cursor" to="GameBoard" method="_check_hoverable_tiles"]

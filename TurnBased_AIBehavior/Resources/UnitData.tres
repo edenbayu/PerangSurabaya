@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=3 format=3 uid="uid://dj7f4hhool2j0"]
+
+[ext_resource type="Script" path="res://Scripts/UnitData.gd" id="1_tqlxf"]
+[ext_resource type="Texture2D" uid="uid://dvyiuno65ptv3" path="res://Sprites/anton.png" id="2_6y0b5"]
+
+[resource]
+script = ExtResource("1_tqlxf")
+unit_name = "Soerjo"
+unit_health = 100
+move_speed = 200
+move_range = 3
+skin = ExtResource("2_6y0b5")
