@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://ccb0nkt8llyhg"]
+[gd_scene load_steps=17 format=3 uid="uid://ccb0nkt8llyhg"]
 
+[ext_resource type="Script" path="res://Scene/LevelManager.gd" id="1_6yabl"]
 [ext_resource type="Script" path="res://Scripts/GameBoard.gd" id="1_hyekb"]
 [ext_resource type="PackedScene" uid="uid://bcbj38fvkj2b5" path="res://Scene/Player.tscn" id="1_lscfy"]
 [ext_resource type="Texture2D" uid="uid://b7mqwj77mfgeo" path="res://Resources/tilese_resized.png" id="1_saa2u"]
@@ -48,6 +49,7 @@ tile_size = Vector2i(320, 160)
 sources/1 = SubResource("TileSetAtlasSource_ed4qq")
 
 [node name="Level1" type="Node2D"]
+script = ExtResource("1_6yabl")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -74,6 +76,8 @@ grid = ExtResource("4_diw5h")
 
 [node name="Soerjo" parent="GameBoard/Player" instance=ExtResource("1_lscfy")]
 Data = ExtResource("7_aj810")
+move_range = 3
+move_speed = 200
 
 [node name="Ling" parent="GameBoard/Player" instance=ExtResource("1_lscfy")]
 position = Vector2(323, 147)

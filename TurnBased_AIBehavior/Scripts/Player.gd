@@ -25,6 +25,9 @@ var walk_coordinates := []:
 			await ready
 		_sprite.texture = value
 #setter getter
+var nama: String:
+	set(value):
+		nama = value
 
 @export var move_range := 4
 @export var move_speed := 5
@@ -43,6 +46,7 @@ var _is_walking := false:
 		set_process(_is_walking)
 
 func _ready():
+	nama = Data.unit_name
 	_sprite.texture = Data.skin
 	move_range = Data.move_range
 	move_speed = Data.move_speed

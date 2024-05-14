@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgehxm7k1l5w1"]
+
+[ext_resource type="Script" path="res://Coba_Dialogue/coba_dialog.gd" id="1_opu30"]
+[ext_resource type="Texture2D" uid="uid://dbp6u0bwjdhgm" path="res://Sprite/Jepang_icon.png" id="5_loikb"]
+[ext_resource type="Texture2D" uid="uid://com5q6tgkrx3n" path="res://Sprite/Soerjo_icon.png" id="7_qhrj8"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_opu30")
+json_path = "res://Coba_Dialogue/Coba.json"
+character_portraits = Array[Texture2D]([ExtResource("7_qhrj8"), ExtResource("5_loikb")])
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1151.0
+offset_bottom = 651.0
+
+[node name="Potrait" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 362.0
+offset_right = 164.0
+offset_bottom = 402.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 0
+offset_top = 364.0
+offset_right = 1148.0
+offset_bottom = 645.0
+
+[node name="DialogueBox" type="TextureRect" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="NameBox" type="TextureRect" parent="Control/MarginContainer/DialogueBox"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NameTextBox" type="RichTextLabel" parent="Control/MarginContainer/DialogueBox/NameBox"]
+layout_mode = 0
+offset_right = 718.0
+offset_bottom = 40.0
+
+[node name="TextBox" type="RichTextLabel" parent="Control/MarginContainer/DialogueBox"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 173.0
+offset_right = 897.0
+offset_bottom = 213.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
