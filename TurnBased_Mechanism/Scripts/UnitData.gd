@@ -6,3 +6,4 @@ class_name UnitData
 @export var unit_role: String
 @export var skin: Texture2D
 @export var icon: Texture2D
+@export var inactive_icon: Texture2D

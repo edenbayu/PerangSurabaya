@@ -35,6 +35,10 @@ var icon: Texture2D:
 	set(value):
 		icon = value
 
+var inactive_icon: Texture2D:
+	set(value):
+		inactive_icon = value
+
 func _ready():
 	is_active = false
 	nama = player_data.nama
@@ -42,3 +46,4 @@ func _ready():
 	unit_role = player_data.unit_role
 	_sprite.texture = player_data.skin
 	icon = player_data.icon
+	inactive_icon = player_data.inactive_icon

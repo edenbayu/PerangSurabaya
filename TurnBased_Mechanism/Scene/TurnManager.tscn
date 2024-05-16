@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dv6ksmmo50sr4"]
+[gd_scene load_steps=8 format=3 uid="uid://dv6ksmmo50sr4"]
 
 [ext_resource type="Script" path="res://Scripts/TurnManager.gd" id="1_c5kf1"]
 [ext_resource type="PackedScene" uid="uid://5s4qfxnjosf4" path="res://Scene/Unit.tscn" id="2_87g2w"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://cccgx0o30etx7" path="res://Resources/Player2.tres" id="4_xwx41"]
 [ext_resource type="Resource" uid="uid://d1foxw3bau6mi" path="res://Resources/Enemy1.tres" id="5_4i2br"]
 [ext_resource type="FontFile" uid="uid://c583mm1xbwni5" path="res://I-pixel-u.ttf" id="6_bg42s"]
+[ext_resource type="Texture2D" uid="uid://bxnnfxmev2j10" path="res://Sprite/Sprite_resized/TurnBar.png" id="7_l5jg7"]
 
 [node name="TurnManager" type="Node2D"]
 script = ExtResource("1_c5kf1")
@@ -33,15 +34,17 @@ player_data = ExtResource("5_4i2br")
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 1153.0
-offset_bottom = 647.0
+offset_left = -159.0
+offset_top = 32.0
+offset_right = 994.0
+offset_bottom = 679.0
 
 [node name="Button" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 519.0
-offset_top = 484.0
-offset_right = 626.0
-offset_bottom = 515.0
+offset_left = 256.0
+offset_top = 82.0
+offset_right = 363.0
+offset_bottom = 113.0
 text = "Change Turn"
 icon_alignment = 1
 
@@ -50,21 +53,37 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
+offset_left = -417.5
+offset_top = -32.0
+offset_right = -129.5
+offset_bottom = -12.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("6_bg42s")
-theme_override_font_sizes/font_size = 60
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+[node name="TurnContainer" type="TextureRect" parent="Control"]
+layout_mode = 2
+offset_left = 259.0
+offset_top = 8.0
+offset_right = 365.0
+offset_bottom = 34.0
+texture = ExtResource("7_l5jg7")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/TurnContainer"]
+texture_filter = 1
+clip_contents = true
 layout_mode = 0
-offset_left = 191.0
-offset_top = 202.0
-offset_right = 231.0
-offset_bottom = 242.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 24.0
+offset_bottom = 25.0
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(144, 81)
+zoom = Vector2(4, 4)
 
 [connection signal="ally_turn_started" from="." to="." method="_on_ally_turn_started"]
 [connection signal="enemy_turn_started" from="." to="." method="_on_enemy_turn_started"]

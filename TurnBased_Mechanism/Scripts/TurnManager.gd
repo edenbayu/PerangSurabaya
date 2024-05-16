@@ -2,7 +2,7 @@ extends Node2D
 
 #var turnManager = TurnManager.new()
 @onready var UI_CONTROLLER = $Control/Button
-@onready var ui_container = $Control/HBoxContainer
+@onready var ui_container = $Control/TurnContainer/HBoxContainer
 @onready var label = $Control/Label
 @onready var timer = $Timer
 @onready var player = $Player
@@ -29,8 +29,8 @@ func _ready():
 
 func set_turn():
 	var unit_status = _units[turn_index].unit_role
-	_units[turn_index].is_active = true
-	_icons[turn_index].is_active = true
+	_active_icon()
+	print("Active icon: ", _icons[turn_index])
 	if unit_status == "ally":
 		emit_signal("ally_turn_started", _units[turn_index])
 	elif unit_status == "enemy":
@@ -61,9 +61,10 @@ func _reinitialize() -> void:
 		var unit_texture = TurnBasedIcon.new()
 		ui_container.add_child(unit_texture)
 		_icons.append(unit_texture)
-		unit_texture.texture = unit.icon
+		unit_texture.texture = unit.inactive_icon
 	_icons[turn_index].is_active = true
 	print(_units)
+	_active_icon()
 
 func _reinitialize_icon() -> void:
 	for child in ui_container.get_children():
@@ -101,6 +102,7 @@ func _on_timer_timeout():
 	_end_turn()
 
 func _end_turn()-> void:
+	active_icon.texture = _active_unit.inactive_icon
 	_units[turn_index].is_active = false
 	_icons[turn_index].is_active = false
 	turn_index = (turn_index + 1) % _units.size()
@@ -110,3 +112,11 @@ func _end_turn()-> void:
 		_reinitialize()
 		print("new_cycle")
 	set_turn()
+
+func _active_icon() -> void:
+	_active_unit = _units[turn_index]
+	_active_unit.is_active = true
+	active_icon = _icons[turn_index]
+	active_icon.is_active = true
+	if active_icon:
+		active_icon.texture = _active_unit.icon
