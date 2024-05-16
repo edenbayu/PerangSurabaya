@@ -40,11 +40,13 @@ offset_right = 994.0
 offset_bottom = 679.0
 
 [node name="Button" type="Button" parent="Control"]
+texture_filter = 1
 layout_mode = 0
-offset_left = 256.0
-offset_top = 82.0
-offset_right = 363.0
-offset_bottom = 113.0
+offset_left = 263.0
+offset_top = 86.0
+offset_right = 367.0
+offset_bottom = 114.0
+theme_override_fonts/font = ExtResource("6_bg42s")
 text = "Change Turn"
 icon_alignment = 1
 
@@ -61,6 +63,7 @@ grow_horizontal = 2
 theme_override_fonts/font = ExtResource("6_bg42s")
 
 [node name="TurnContainer" type="TextureRect" parent="Control"]
+texture_filter = 1
 layout_mode = 2
 offset_left = 259.0
 offset_top = 8.0
