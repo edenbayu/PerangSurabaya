@@ -20,9 +20,7 @@ func _init(grid: Grid, walkable_cells: Array) -> void:
 	for x in range(_astar.region.position.x, _astar.region.position.x + _astar.region.size.x):
 		for y in range(_astar.region.position.y, _astar.region.position.y + _astar.region.size.y):
 			vectors_inside.append(Vector2(x, y))
-	
-	_astar.set_point_solid(Vector2i(4,0), true)
-	
+
 	##Iterasi untuk seluruh points dalam grid yang bukan termasuk walkable 
 	##PR BENARKAN KODINGAN DIBAWAH INI##
 	#for cell in vectors_inside:
