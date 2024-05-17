@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=3 format=3 uid="uid://bdydtvur8kym5"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=5 format=3 uid="uid://bdydtvur8kym5"]
 
 [ext_resource type="Script" path="res://Scripts/UnitData.gd" id="1_2n4y0"]
-[ext_resource type="Texture2D" uid="uid://cc5kcoo7ga4ok" path="res://Sprites/Ling.png" id="2_f8arq"]
+[ext_resource type="Texture2D" uid="uid://def3y28sdrhv1" path="res://UI_Assets/Icons/active_icon_ling.png" id="1_sjirc"]
+[ext_resource type="Texture2D" uid="uid://boy7gwhu6b1ts" path="res://UI_Assets/Icons/nonactive_icon_ling.png" id="2_vubq4"]
+[ext_resource type="Texture2D" uid="uid://bvsrwenxlb0tk" path="res://Sprites/Ling_idle.png" id="4_g843m"]
 
 [resource]
 script = ExtResource("1_2n4y0")
@@ -9,4 +11,7 @@ unit_name = "Ling"
 unit_health = 80
 move_speed = 600
 move_range = 5
-skin = ExtResource("2_f8arq")
+skin = ExtResource("4_g843m")
+icon = ExtResource("1_sjirc")
+inactive_icon = ExtResource("2_vubq4")
+unit_role = "ally"

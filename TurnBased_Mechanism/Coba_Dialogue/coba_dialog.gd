@@ -1,5 +1,5 @@
 @tool
-extends CanvasLayer
+extends Control
 #READ JSON FILE
 @export_category("PATH TO JSON DIALOGUE")
 @export var json_path = "json path here"

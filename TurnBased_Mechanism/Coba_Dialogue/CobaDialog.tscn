@@ -1,13 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgehxm7k1l5w1"]
+[gd_scene load_steps=3 format=3 uid="uid://bgehxm7k1l5w1"]
 
 [ext_resource type="Script" path="res://Coba_Dialogue/coba_dialog.gd" id="1_opu30"]
-[ext_resource type="Texture2D" uid="uid://dbp6u0bwjdhgm" path="res://Sprite/Jepang_icon.png" id="5_loikb"]
-[ext_resource type="Texture2D" uid="uid://com5q6tgkrx3n" path="res://Sprite/Soerjo_icon.png" id="7_qhrj8"]
+[ext_resource type="Texture2D" uid="uid://bxo5d0l1ahdj5" path="res://Coba_Dialogue/soerjo_bust.png" id="4_vykms"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="CanvasLayer" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_opu30")
-json_path = "res://Coba_Dialogue/Coba.json"
-character_portraits = Array[Texture2D]([ExtResource("7_qhrj8"), ExtResource("5_loikb")])
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -17,11 +17,11 @@ offset_bottom = 651.0
 
 [node name="Potrait" type="TextureRect" parent="Control"]
 layout_mode = 0
-offset_left = 124.0
+offset_left = 122.0
 offset_top = 362.0
-offset_right = 164.0
-offset_bottom = 402.0
-texture = ExtResource("7_qhrj8")
+offset_right = 922.0
+offset_bottom = 1162.0
+texture = ExtResource("4_vykms")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 0
@@ -52,3 +52,7 @@ offset_bottom = 213.0
 text = "Selamat Pagi"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(574, 326)
+zoom = Vector2(0.25, 0.25)

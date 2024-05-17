@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=3 format=3 uid="uid://b0i0uk17yp08v"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=5 format=3 uid="uid://b0i0uk17yp08v"]
 
 [ext_resource type="Script" path="res://Scripts/UnitData.gd" id="1_8qeyr"]
-[ext_resource type="Texture2D" uid="uid://dtv0kmyg46bva" path="res://Sprites/Jepun.png" id="2_y0qtg"]
+[ext_resource type="Texture2D" uid="uid://o02v8eyen8sf" path="res://UI_Assets/Icons/active_icon_jepang.png" id="1_yloy2"]
+[ext_resource type="Texture2D" uid="uid://bnypkbhfopqo5" path="res://UI_Assets/Icons/nonactive_icon_jepang.png" id="2_lf5m8"]
+[ext_resource type="Texture2D" uid="uid://dui4iqmelecde" path="res://Sprites/Jepang_idle.png" id="4_5j0ho"]
 
 [resource]
 script = ExtResource("1_8qeyr")
@@ -9,4 +11,7 @@ unit_name = "Jepang"
 unit_health = 50
 move_speed = 500
 move_range = 3
-skin = ExtResource("2_y0qtg")
+skin = ExtResource("4_5j0ho")
+icon = ExtResource("1_yloy2")
+inactive_icon = ExtResource("2_lf5m8")
+unit_role = "enemy"

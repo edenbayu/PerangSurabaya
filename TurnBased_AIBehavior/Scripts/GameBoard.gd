@@ -6,6 +6,7 @@ const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 @onready var unitPath: UnitPath = $UnitPath
 @onready var cursor = $Cursor
 @onready var player = $Player
+@onready var enemy = $Enemy
 
 var is_within_map: bool
 var _walkable_cells := []
@@ -20,6 +21,10 @@ var _is_clickable := false:
 func _ready() -> void:
 	_initiallize_unit_pos()
 	_reinitialize()
+	#_update()
+
+func _process(delta):
+	_update()
 
 ## Clears, and refills the `_units` dictionary with game objects that are on the board.
 func _reinitialize() -> void:
@@ -30,9 +35,21 @@ func _reinitialize() -> void:
 		if not unit:
 			continue
 		_units[unit.cell] = unit
+	
+	for child in enemy.get_children():
+		var unit := child as Unit
+		if not unit:
+			continue
+		_units[unit.cell] = unit
+		
 
 func _initiallize_unit_pos() -> void:
 	for child in player.get_children():
+		var unit := child as Unit
+		if not unit:
+			continue
+		unit.cell = unitPath.local_to_map(unit.position)
+	for child in enemy.get_children():
 		var unit := child as Unit
 		if not unit:
 			continue
@@ -141,3 +158,36 @@ func _deselect_active_unit() -> void:
 func _clear_active_unit() -> void:
 	_active_unit = null
 	_walkable_cells.clear()
+
+func _update_unit_z_index() -> void:
+	var index_size = _units.size()
+	for unit in _units:
+		pass
+
+func _update() -> void:
+	var ordering = []
+	#Iterate thru the player nodes
+	for child in player.get_children():
+		var unit := child as Unit
+		if not unit:
+			continue
+		ordering.append(unit)
+	#Iterate thru the player nodes
+	for child in enemy.get_children():
+		var unit := child as Unit
+		if not unit:
+			continue
+		ordering.append(unit)
+	# Sort units based on their cell values
+	ordering.sort_custom(_sort_index)
+	# Iterate through sorted units and assign Z indices
+	for i in range(ordering.size()):
+		var unit = ordering[i]
+		# Assign Z index based on the index in the sorted list
+		unit.z_index = i
+
+func _sort_index(a: Unit, b: Unit) -> bool:
+	if a.cell.x != b.cell.x:
+		return a.cell.x < b.cell.x
+	else:
+		return a.cell.y < b.cell.y

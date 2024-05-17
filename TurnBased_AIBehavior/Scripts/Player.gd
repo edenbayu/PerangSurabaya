@@ -7,6 +7,7 @@ signal walk_finished
 
 @export var Data : UnitData
 @onready var _sprite = $Sprite2D
+@onready var _animation = $AnimationPlayer
 
 ## Coordinates of the current cell the cursor moved to.
 var cell := Vector2.ZERO:
@@ -18,7 +19,7 @@ var walk_coordinates := []:
 	set(value):
 		walk_coordinates = value
 
-@export var skin: Texture:
+var skin: Texture2D:
 	set(value):
 		skin = value
 		if not _sprite:
@@ -28,6 +29,14 @@ var walk_coordinates := []:
 var nama: String:
 	set(value):
 		nama = value
+
+var icon: Texture2D:
+	set(value):
+		icon = value
+
+var inactive_icon: Texture2D:
+	set(value):
+		inactive_icon = value
 
 @export var move_range := 4
 @export var move_speed := 5
@@ -45,11 +54,18 @@ var _is_walking := false:
 		_is_walking = value
 		set_process(_is_walking)
 
+var unit_role: String:
+	set(value):
+		unit_role = value
+
 func _ready():
 	nama = Data.unit_name
 	_sprite.texture = Data.skin
 	move_range = Data.move_range
 	move_speed = Data.move_speed
+	inactive_icon = Data.inactive_icon
+	icon = Data.icon
+	_animation.play("soerjo_idle")
 
 func walk(new_cell: Vector2):
 	_is_walking = true

@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Scripts/UI.gd" id="1_jrp3s"]
 [ext_resource type="Script" path="res://Scripts/Label.gd" id="2_j17w0"]
 [ext_resource type="Texture2D" uid="uid://c5qjg4mtr786" path="res://icon.svg" id="2_yvjpa"]
-[ext_resource type="FontVariation" uid="uid://50xvyymn28l4" path="res://PixelFont.tres" id="3_hqyk1"]
-[ext_resource type="FontFile" uid="uid://b13x4vqusjxd0" path="res://I-pixel-u.ttf" id="5_rqoqf"]
+[ext_resource type="FontVariation" uid="uid://50xvyymn28l4" path="res://UI_Assets/PixelFont.tres" id="3_hqyk1"]
+[ext_resource type="FontFile" uid="uid://b13x4vqusjxd0" path="res://UI_Assets/I-pixel-u.ttf" id="5_wxcrc"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -38,7 +38,7 @@ offset_left = -2.0
 offset_top = -3.0
 offset_right = 134.0
 offset_bottom = 133.0
-theme_override_fonts/font = ExtResource("5_rqoqf")
+theme_override_fonts/font = ExtResource("5_wxcrc")
 text = "SAVE"
 flat = true
 
@@ -48,5 +48,5 @@ layout_mode = 1
 offset_left = 529.0
 offset_right = 586.0
 offset_bottom = 23.0
-theme_override_fonts/font = ExtResource("5_rqoqf")
+theme_override_fonts/font = ExtResource("5_wxcrc")
 text = "Jepang:"

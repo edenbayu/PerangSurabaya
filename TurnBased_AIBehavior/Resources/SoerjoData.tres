@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=5 format=3 uid="uid://dj7f4hhool2j0"]
+
+[ext_resource type="Texture2D" uid="uid://yovr62tt0wje" path="res://UI_Assets/Icons/active_icon_soerjo.png" id="1_6d01c"]
+[ext_resource type="Script" path="res://Scripts/UnitData.gd" id="1_tqlxf"]
+[ext_resource type="Texture2D" uid="uid://byucv88ohl5m3" path="res://UI_Assets/Icons/nonactive_icon_soerjo.png" id="2_0t5ya"]
+[ext_resource type="Texture2D" uid="uid://1r48nt461w82" path="res://Sprites/Soerjo.png" id="4_3dh3u"]
+
+[resource]
+script = ExtResource("1_tqlxf")
+unit_name = "Soerjo"
+unit_health = 100
+move_speed = 700
+move_range = 3
+skin = ExtResource("4_3dh3u")
+icon = ExtResource("1_6d01c")
+inactive_icon = ExtResource("2_0t5ya")
+unit_role = "ally"

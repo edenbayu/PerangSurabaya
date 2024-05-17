@@ -1,25 +1,62 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcbj38fvkj2b5"]
+[gd_scene load_steps=7 format=3 uid="uid://bcbj38fvkj2b5"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_2t8lw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wdqu4"]
 radius = 13.9393
 
+[sub_resource type="Animation" id="Animation_hoscp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ygpso"]
+resource_name = "new_animation"
+
 [sub_resource type="Animation" id="Animation_2mx2d"]
 resource_name = "soerjo_idle"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 2, 3, 4, 5]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_15xbu"]
 _data = {
+"RESET": SubResource("Animation_hoscp"),
+"new_animation": SubResource("Animation_ygpso"),
 "soerjo_idle": SubResource("Animation_2mx2d")
 }
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="Soerjo" type="CharacterBody2D"]
 z_index = 1
 script = ExtResource("1_2t8lw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.7, 0.7, 0.7, 1)
-position = Vector2(7, -155)
+z_index = 1
+y_sort_enabled = true
+position = Vector2(7, -79)
+hframes = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(7, 0)
