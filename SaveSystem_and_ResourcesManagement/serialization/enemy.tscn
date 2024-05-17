@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhna2rcsp5qhl"]
+
+[ext_resource type="Script" path="res://Script/enemy.gd" id="1_dxtid"]
+[ext_resource type="Texture2D" uid="uid://btwwc5scaqp55" path="res://Sprite/enemy_crab.png" id="2_5015a"]
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(76, 76)
+
+[node name="Enemy" type="Node2D" groups=["enemy"]]
+position = Vector2(64, 160)
+script = ExtResource("1_dxtid")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+scale = Vector2(4, 4)
+texture = ExtResource("2_5015a")
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("2")
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]

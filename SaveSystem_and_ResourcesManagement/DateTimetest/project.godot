@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Date Timetest"
-run/main_scene="res://tes_button.tscn"
+run/main_scene="res://scene/tes_button.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.svg"
 

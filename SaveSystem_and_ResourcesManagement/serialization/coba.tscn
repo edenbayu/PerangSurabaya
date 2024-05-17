@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdrygbdulcrjx"]
+
+[ext_resource type="Script" path="res://Pemain.gd" id="1_w4kjr"]
+[ext_resource type="Texture2D" uid="uid://dpm1oolm8wr02" path="res://Sprite/sea_turtle.png" id="2_3xfup"]
+[ext_resource type="Script" path="res://SaveLoad.gd" id="2_6ctcy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fxao1"]
+size = Vector2(16.2122, 16.0748)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(540, 168)
+scale = Vector2(7.27848, 7.27848)
+script = ExtResource("1_w4kjr")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("2_3xfup")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(7.62939e-06, -0.0686951)
+shape = SubResource("RectangleShape2D_fxao1")
+
+[node name="Enemy1" type="Node2D" parent="."]
+
+[node name="Enemy2" type="Node2D" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SaveButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 36.0
+offset_right = 87.0
+offset_bottom = 67.0
+text = "Save"
+script = ExtResource("2_6ctcy")
+
+[node name="LoadButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 36.0
+offset_right = 147.0
+offset_bottom = 67.0
+disabled = true
+text = "Load"
+script = ExtResource("2_6ctcy")
+game_node = NodePath("../..")
+
+[connection signal="pressed" from="Control/SaveButton" to="Control/SaveButton" method="save_game"]
+[connection signal="pressed" from="Control/LoadButton" to="Control/SaveButton" method="load_game"]

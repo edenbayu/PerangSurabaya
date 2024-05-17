@@ -1,0 +1,7 @@
+res://save_load.tscn
+res://Script/player.gd
+res://Script/save_load_json.gd
+res://Script/enemy.gd
+res://Script/SaveLoadGame.gd
+res://enemy.tscn
+res://coba.tscn

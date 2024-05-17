@@ -1,10 +1,23 @@
 extends Button
 
 @onready var button = $"."
-const SAVE_PATH = "res://script//save_test.json"
 
+var save_index := []
+var file_save = []
+var SAVE_PATH = "res://script//save_test.json"
 
 func save_game():
+	var num = 0
+	# check the list
+	if save_index.size() > 0:
+		# get the last number
+		num = save_index[save_index.size() - 1]
+	else:
+		pass
+	
+	var next_number = num + 1
+	save_index.append(next_number) 
+	
 	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	var time = Time.get_datetime_dict_from_system()
 	
@@ -27,9 +40,9 @@ func save_game():
 
 
 func load_game():
-	var file := FileAccess.open(SAVE_PATH, FileAccess.READ)
-	var json := JSON.new()
-	var value = json.parse_string(file.get_as_text())
+	pass
+	# var file := FileAccess.open(SAVE_PATH, FileAccess.READ)
+	# var json := JSON.new()
+	# var value = json.parse_string(file.get_as_text())
 	
-	# button.text = 
-	return value
+	# return value

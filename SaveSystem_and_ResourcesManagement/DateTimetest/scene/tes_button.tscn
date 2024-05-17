@@ -1,12 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b1pkkj7eca8um"]
+[gd_scene load_steps=2 format=3 uid="uid://b1pkkj7eca8um"]
 
-[ext_resource type="Script" path="res://Node2D.gd" id="1_l8xyc"]
-[ext_resource type="Script" path="res://script/saveandload.gd" id="1_rjyye"]
+[ext_resource type="Script" path="res://script/saveandload.gd" id="1_l6spt"]
 
 [node name="TesButton" type="Node2D"]
-
-[node name="Node2D" type="Node2D" parent="."]
-script = ExtResource("1_l8xyc")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -29,14 +25,14 @@ layout_mode = 2
 text = "Save Game
 Date: x
 Time: x"
-script = ExtResource("1_rjyye")
+script = ExtResource("1_l6spt")
 
 [node name="Load" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 disabled = true
 text = "Load Game
 "
-script = ExtResource("1_rjyye")
+script = ExtResource("1_l6spt")
 
 [connection signal="pressed" from="Control/VBoxContainer/Save" to="Control/VBoxContainer/Save" method="save_game"]
 [connection signal="pressed" from="Control/VBoxContainer/Load" to="Control/VBoxContainer/Save" method="load_game"]
