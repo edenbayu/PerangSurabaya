@@ -26,21 +26,24 @@ var wait_time_test := 3.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_reinitialize()
+	gameboard._select_unit(_active_unit)
 	label.text = "It's your turn: " + str(_units[turn_index].nama)
+
+func _process(delta):
+	pass
 
 func set_turn():
 	var unit_status = _units[turn_index].unit_role
 	_active_icon()
 	print("Active icon: ", _icons[turn_index])
 	if unit_status == "ally":
-		emit_signal("ally_turn_started", _units[turn_index])
+		emit_signal("ally_turn_started", _active_unit)
 	elif unit_status == "enemy":
-		emit_signal("enemy_turn_started", _units[turn_index])
+		emit_signal("enemy_turn_started", _active_unit)
 
 func _reinitialize() -> void:
 	_units.clear()
 	_icons.clear()
-	#ui_container.get_children().
 	##Getting the move_speed stats from player node
 	for child in player.get_children():
 		var unit := child as Unit
@@ -57,7 +60,7 @@ func _reinitialize() -> void:
 	_units.sort_custom(_sort_turn)
 	_units[turn_index].is_selected = true
 	
-	#Adding icon child into the UI container
+	##Adding icon child into the UI container
 	for unit in _units:
 		var unit_texture = TurnBasedIcon.new()
 		ui_container.add_child(unit_texture)
@@ -94,7 +97,7 @@ func _on_enemy_turn_started(unit: Unit) -> void:
 	timer.wait_time = wait_time_test
 	timer.start()
 
-# Function to handle button press (switches to enemy turn)
+## Function to handle button press (switches to enemy turn)
 func _on_button_pressed():
 	# Set the turn to enemy turn
 	_end_turn()

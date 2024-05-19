@@ -75,16 +75,17 @@ func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 	var mapped_cell: Vector2 = unitPath.local_to_map(cell)
 	if _is_clickable:
 		if not _active_unit:
-			_select_unit(mapped_cell)
+			#_select_unit(mapped_cell)
+			pass
 		elif _active_unit.is_selected:
 			_move_active_unit(mapped_cell)
 
 ##Function yang terhubung dengan cursor click
-func _select_unit(cell: Vector2) -> void:
-	if not _units.has(cell):
-		return
+func _select_unit(unit: Unit) -> void:
+	#if not _units.has(cell):
+		#return
 
-	_active_unit = _units[cell]
+	_active_unit = unit
 	_active_unit.is_selected = true
 	_walkable_cells = get_walkable_cells(_active_unit)
 	unitPath.draw(_walkable_cells)

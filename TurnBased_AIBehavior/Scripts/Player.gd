@@ -1,4 +1,3 @@
-@tool
 class_name Unit
 extends CharacterBody2D
 
@@ -64,6 +63,7 @@ func _ready():
 	move_range = Data.move_range
 	move_speed = Data.move_speed
 	inactive_icon = Data.inactive_icon
+	unit_role = Data.unit_role
 	icon = Data.icon
 	_animation.play("soerjo_idle")
 
