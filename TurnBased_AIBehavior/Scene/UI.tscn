@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://crrclr6rtjda"]
+[gd_scene load_steps=7 format=3 uid="uid://crrclr6rtjda"]
 
 [ext_resource type="Script" path="res://Scripts/UI.gd" id="1_jrp3s"]
 [ext_resource type="Script" path="res://Scripts/Label.gd" id="2_j17w0"]
 [ext_resource type="Texture2D" uid="uid://c5qjg4mtr786" path="res://icon.svg" id="2_yvjpa"]
 [ext_resource type="FontVariation" uid="uid://50xvyymn28l4" path="res://UI_Assets/PixelFont.tres" id="3_hqyk1"]
 [ext_resource type="FontFile" uid="uid://b13x4vqusjxd0" path="res://UI_Assets/I-pixel-u.ttf" id="5_wxcrc"]
+[ext_resource type="Texture2D" uid="uid://cq7mpckbuo8bw" path="res://UI_Assets/Icons/NameBox.png" id="6_dnhv2"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -50,3 +51,10 @@ offset_right = 586.0
 offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("5_wxcrc")
 text = "Jepang:"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("6_dnhv2")

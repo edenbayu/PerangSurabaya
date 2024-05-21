@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcbj38fvkj2b5"]
+[gd_scene load_steps=8 format=3 uid="uid://bcbj38fvkj2b5"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_2t8lw"]
+[ext_resource type="Texture2D" uid="uid://b21hd1c4am5kj" path="res://UI_Assets/Icons/shadow.png" id="2_ethml"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wdqu4"]
 radius = 13.9393
@@ -80,3 +81,7 @@ shape = SubResource("CircleShape2D_wdqu4")
 libraries = {
 "": SubResource("AnimationLibrary_15xbu")
 }
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0.545098, 0.545098, 0.545098, 0.462745)
+texture = ExtResource("2_ethml")
