@@ -3,6 +3,7 @@ extends Node2D
 
 const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 
+@export var grid: Grid
 @onready var unitPath: UnitPath = $UnitPath
 @onready var cursor = $Cursor
 @onready var player = $Player
@@ -10,6 +11,7 @@ const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 
 var is_within_map: bool
 var _walkable_cells := []
+var _attack_cells := []
 var _units := {}
 var _active_unit: Unit
 
@@ -21,6 +23,7 @@ var _is_clickable := false:
 func _ready() -> void:
 	_initiallize_unit_pos()
 	_reinitialize()
+	unitPath.clear_cells(grid)
 	#_update()
 
 func _process(delta):
@@ -84,7 +87,6 @@ func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 func _select_unit(unit: Unit) -> void:
 	#if not _units.has(cell):
 		#return
-
 	_active_unit = unit
 	_active_unit.is_selected = true
 	_walkable_cells = get_walkable_cells(_active_unit)
@@ -94,6 +96,9 @@ func _select_unit(unit: Unit) -> void:
 ## Returns an array of cells a given unit can walk using the flood fill algorithm.
 func get_walkable_cells(unit: Unit) -> Array:
 	return _flood_fill(unit.cell, unit.move_range)
+
+func get_attack_range_cells(unit: Unit) -> Array:
+	return _flood_fill_attack(unit.cell, unit.attack_range)
 
 ## Returns an array with all the coordinates of walkable cells based on the `max_distance`.
 func _flood_fill(cell: Vector2, max_distance: int) -> Array:
@@ -125,6 +130,36 @@ func _flood_fill(cell: Vector2, max_distance: int) -> Array:
 	array.pop_front()
 	return array
 
+## Returns an array with all the coordinates of walkable cells based on the `max_distance`.
+func _flood_fill_attack(cell: Vector2, max_distance: int) -> Array:
+	var array := []
+	var stack := [cell]
+	while not stack.size() == 0:
+		var current = stack.pop_back()
+		if current in array:
+			continue
+
+		var difference: Vector2i = (current - cell).abs()
+		var distance := int(difference.x + difference.y)
+		if distance > max_distance:
+			continue
+
+		array.append(current)
+		for direction in DIRECTIONS:
+			var coordinates: Vector2 = current + direction
+			if is_outside_map(coordinates):
+				continue
+			if coordinates in array:
+				continue
+			# Minor optimization: If this neighbor is already queued
+			#	to be checked, we don't need to queue it again
+			if coordinates in stack:
+				continue
+
+			stack.append(coordinates)
+	array.pop_front()
+	return array
+
 func is_outside_map(cell: Vector2i) -> bool:
 	if cell not in unitPath.get_walkable_cells():
 		return true
@@ -144,6 +179,7 @@ func _move_active_unit(new_cell: Vector2) -> void:
 		i = unitPath.map_to_local(i)
 		new_path.append(i)
 	_active_unit.walk_coordinates = new_path 
+	##Menghapus active unit setelah selesai bergerak
 	_units.erase(_active_unit.cell)
 	_units[new_cell] = _active_unit
 	_deselect_active_unit()
@@ -154,10 +190,10 @@ func _move_active_unit(new_cell: Vector2) -> void:
 ## Deselects the active unit, clearing the cells overlay and interactive path drawing.
 func _deselect_active_unit() -> void:
 	_active_unit.is_selected = false
-	unitPath.clear()
+	unitPath.clear_cells(grid)
 
 func _clear_active_unit() -> void:
-	_active_unit = null
+	#_active_unit = null
 	_walkable_cells.clear()
 
 func _update_unit_z_index() -> void:
@@ -192,3 +228,13 @@ func _sort_index(a: Unit, b: Unit) -> bool:
 		return a.cell.x < b.cell.x
 	else:
 		return a.cell.y < b.cell.y
+
+func _on_attack():
+	_attack_cells = get_attack_range_cells(_active_unit)
+	unitPath.display_attack_range(_attack_cells)
+	unitPath.initialize(_attack_cells)
+	#for target in _attack_cells:
+		#var unit := target as Unit
+		#if not unit:
+			#continue
+		

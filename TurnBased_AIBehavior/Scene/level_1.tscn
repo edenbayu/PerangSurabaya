@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ccb0nkt8llyhg"]
+[gd_scene load_steps=23 format=3 uid="uid://ccb0nkt8llyhg"]
 
 [ext_resource type="Script" path="res://Scene/LevelManager.gd" id="1_6yabl"]
 [ext_resource type="Script" path="res://Scripts/GameBoard.gd" id="1_hyekb"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://c3ides7pfvous" path="res://Resources/Grid.tres" id="4_diw5h"]
 [ext_resource type="Resource" uid="uid://dj7f4hhool2j0" path="res://Resources/SoerjoData.tres" id="7_aj810"]
 [ext_resource type="Resource" uid="uid://bdydtvur8kym5" path="res://Resources/LingData.tres" id="8_6s8qo"]
+[ext_resource type="Texture2D" uid="uid://ba0jmflmj1p2n" path="res://Sprites/Path.png" id="9_62p8v"]
 [ext_resource type="Resource" uid="uid://b0i0uk17yp08v" path="res://Resources/EnemyPawn.tres" id="9_msqev"]
 [ext_resource type="PackedScene" uid="uid://cx7v1v1x1dgib" path="res://Scene/Cursor.tscn" id="11_saeha"]
 [ext_resource type="FontFile" uid="uid://b13x4vqusjxd0" path="res://UI_Assets/I-pixel-u.ttf" id="12_msqff"]
@@ -39,6 +40,17 @@ tile_layout = 5
 tile_size = Vector2i(320, 160)
 sources/0 = SubResource("TileSetAtlasSource_vsyxm")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qqcre"]
+texture = ExtResource("9_62p8v")
+texture_region_size = Vector2i(320, 320)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 80)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, 80)
+1:0/0/modulate = Color(1, 1, 1, 0.588235)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, 80)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ed4qq"]
 texture = ExtResource("3_od8ng")
 texture_region_size = Vector2i(320, 320)
@@ -51,6 +63,7 @@ tile_shape = 1
 tile_layout = 5
 tile_size = Vector2i(320, 160)
 sources/1 = SubResource("TileSetAtlasSource_ed4qq")
+sources/0 = SubResource("TileSetAtlasSource_qqcre")
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_6yabl")
@@ -125,11 +138,22 @@ offset_right = 2560.0
 grow_vertical = 0
 texture = ExtResource("15_djlbt")
 
+[node name="Button2" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 393.0
+offset_right = 661.0
+offset_bottom = 472.0
+theme_override_fonts/font = ExtResource("12_msqff")
+theme_override_font_sizes/font_size = 34
+text = "ATTACK"
+
 [node name="Control2" parent="." instance=ExtResource("13_horiu")]
 visible = false
 
 [node name="GameBoard" type="Node2D" parent="."]
 script = ExtResource("1_hyekb")
+grid = ExtResource("4_diw5h")
 
 [node name="TileMap" type="TileMap" parent="GameBoard"]
 format = 2
@@ -185,6 +209,7 @@ zoom = Vector2(0.5, 0.5)
 [connection signal="ally_turn_started" from="." to="." method="_on_ally_turn_started"]
 [connection signal="enemy_turn_started" from="." to="." method="_on_enemy_turn_started"]
 [connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Control/Button2" to="GameBoard" method="_on_attack"]
 [connection signal="accept_pressed" from="GameBoard/Cursor" to="GameBoard" method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="GameBoard/Cursor" to="GameBoard" method="_check_hoverable_tiles"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

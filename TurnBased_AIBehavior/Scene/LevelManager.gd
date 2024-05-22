@@ -8,6 +8,7 @@ extends Node2D
 @onready var player = $GameBoard/Player
 @onready var enemy = $GameBoard/Enemy
 @onready var gameboard = $GameBoard
+@onready var camera = $Camera2D
 
 enum {ALLY_TURN, ENEMY_TURN}
 
@@ -28,9 +29,6 @@ func _ready():
 	_reinitialize()
 	gameboard._select_unit(_active_unit)
 	label.text = "It's your turn: " + str(_units[turn_index].nama)
-
-func _process(delta):
-	pass
 
 func set_turn():
 	var unit_status = _units[turn_index].unit_role
@@ -89,8 +87,6 @@ func _on_ally_turn_started(unit: Unit) -> void:
 
 # Signal handler for enemy turn started
 func _on_enemy_turn_started(unit: Unit) -> void:
-	var ling = $GameBoard/Player/Ling
-	ling.move_speed -= 2
 	print("It's enemy's turn! Unit:", unit.nama)
 	label.text = "It's your enemy turn: " + str(unit.nama)
 	UI_CONTROLLER.visible = false

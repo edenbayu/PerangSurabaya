@@ -11,6 +11,7 @@ unit_name = "Soerjo"
 unit_health = 100
 move_speed = 700
 move_range = 3
+attack_range = 3
 skin = ExtResource("4_3dh3u")
 icon = ExtResource("1_6d01c")
 inactive_icon = ExtResource("2_0t5ya")

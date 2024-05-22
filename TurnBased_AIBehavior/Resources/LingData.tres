@@ -11,6 +11,7 @@ unit_name = "Ling"
 unit_health = 80
 move_speed = 600
 move_range = 5
+attack_range = 3
 skin = ExtResource("4_g843m")
 icon = ExtResource("1_sjirc")
 inactive_icon = ExtResource("2_vubq4")

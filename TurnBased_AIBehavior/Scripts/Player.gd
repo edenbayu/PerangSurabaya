@@ -8,6 +8,8 @@ signal walk_finished
 @onready var _sprite = $Sprite2D
 @onready var _animation = $AnimationPlayer
 
+var attack_range : int
+
 ## Coordinates of the current cell the cursor moved to.
 var cell := Vector2.ZERO:
 	set(value):
@@ -61,6 +63,7 @@ func _ready():
 	nama = Data.unit_name
 	_sprite.texture = Data.skin
 	move_range = Data.move_range
+	attack_range = Data.attack_range
 	move_speed = Data.move_speed
 	inactive_icon = Data.inactive_icon
 	unit_role = Data.unit_role
