@@ -1,0 +1,256 @@
+[gd_scene load_steps=30 format=3 uid="uid://bgehxm7k1l5w1"]
+
+[ext_resource type="Script" path="res://Coba_Dialogue/coba_dialog.gd" id="1_opu30"]
+[ext_resource type="Texture2D" uid="uid://ddkqx131fjcpr" path="res://Coba_Dialogue/Soerjo_Portrait.png" id="2_l0s0g"]
+[ext_resource type="Texture2D" uid="uid://dfsb5f0ykcip2" path="res://Sudirman.png" id="2_n20fs"]
+[ext_resource type="Texture2D" uid="uid://c1vjij5p0xeo6" path="res://Ling.png" id="4_5u4lh"]
+[ext_resource type="Texture2D" uid="uid://cij08a567hi4b" path="res://background.png" id="5_cflk8"]
+[ext_resource type="Texture2D" uid="uid://cu8n7c3g7qk2l" path="res://Coba_Dialogue/Jepang_Portrait.png" id="5_msc1k"]
+[ext_resource type="FontFile" uid="uid://c583mm1xbwni5" path="res://I-pixel-u.ttf" id="5_xku1p"]
+[ext_resource type="Texture2D" uid="uid://c17arkmh2kfib" path="res://Coba_Dialogue/TextBox.png" id="6_dbqmv"]
+[ext_resource type="Texture2D" uid="uid://cs4aq8fiq6m7n" path="res://Coba_Dialogue/namebox.png" id="7_1h7uy"]
+[ext_resource type="Texture2D" uid="uid://ca76qy8whvuqm" path="res://Sidik.png" id="7_x1gun"]
+[ext_resource type="FontFile" uid="uid://88daejmocvlh" path="res://DePixelBreit.ttf" id="10_oyntq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o44gs"]
+atlas = ExtResource("6_dbqmv")
+region = Rect2(0, 0, 1816, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_josox"]
+atlas = ExtResource("6_dbqmv")
+region = Rect2(1816, 0, 1816, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23b63"]
+atlas = ExtResource("6_dbqmv")
+region = Rect2(3632, 0, 1816, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6fa4"]
+atlas = ExtResource("6_dbqmv")
+region = Rect2(5448, 0, 1816, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gc0af"]
+atlas = ExtResource("6_dbqmv")
+region = Rect2(7264, 0, 1816, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dj1h5"]
+atlas = ExtResource("6_dbqmv")
+region = Rect2(9080, 0, 1816, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrj1v"]
+atlas = ExtResource("6_dbqmv")
+region = Rect2(10896, 0, 1816, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0jxg"]
+atlas = ExtResource("6_dbqmv")
+region = Rect2(12712, 0, 1816, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ocv4"]
+atlas = ExtResource("6_dbqmv")
+region = Rect2(14528, 0, 1816, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ila0q"]
+atlas = ExtResource("6_dbqmv")
+region = Rect2(16344, 0, 1816, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sv7uf"]
+atlas = ExtResource("6_dbqmv")
+region = Rect2(18160, 0, 1816, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ift5"]
+atlas = ExtResource("6_dbqmv")
+region = Rect2(19976, 0, 1816, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aokah"]
+atlas = ExtResource("6_dbqmv")
+region = Rect2(21792, 0, 1816, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h55xo"]
+atlas = ExtResource("6_dbqmv")
+region = Rect2(23608, 0, 1816, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slhst"]
+atlas = ExtResource("6_dbqmv")
+region = Rect2(25424, 0, 1816, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ln7nt"]
+atlas = ExtResource("6_dbqmv")
+region = Rect2(27240, 0, 1816, 232)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nnhmv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o44gs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_josox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23b63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6fa4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gc0af")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dj1h5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nrj1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0jxg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ocv4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ila0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sv7uf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ift5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aokah")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h55xo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_slhst")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ln7nt")
+}],
+"loop": true,
+"name": &"blink",
+"speed": 10.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dlptp"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="CanvasLayer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_opu30")
+json_path = "res://Coba_Dialogue/Coba.json"
+character_portraits = Array[Texture2D]([ExtResource("2_l0s0g"), ExtResource("7_x1gun"), ExtResource("4_5u4lh"), ExtResource("5_msc1k"), null])
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -960.0
+offset_top = -539.0
+offset_right = 960.0
+offset_bottom = 541.0
+texture = ExtResource("5_cflk8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = -1245.0
+offset_top = -543.0
+offset_right = 1096.0
+offset_bottom = 577.0
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -34.0
+offset_top = 55.0
+offset_right = -34.0
+offset_bottom = 55.0
+
+[node name="Potrait" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -707.0
+offset_top = -310.0
+offset_right = -107.0
+offset_bottom = 290.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_n20fs")
+
+[node name="Potrait2" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 212.0
+offset_top = -331.0
+offset_right = 812.0
+offset_bottom = 269.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_x1gun")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 0
+offset_left = -922.0
+offset_top = 204.0
+offset_right = 998.0
+offset_bottom = 483.0
+
+[node name="DialogueBox" type="TextureRect" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="NameBox" type="TextureRect" parent="Control/MarginContainer/DialogueBox"]
+z_index = 2
+layout_mode = 0
+offset_left = 1394.0
+offset_top = -15.0
+offset_right = 1866.0
+offset_bottom = 105.0
+texture = ExtResource("7_1h7uy")
+
+[node name="TextureRect" type="AnimatedSprite2D" parent="Control/MarginContainer/DialogueBox"]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(958, 149)
+sprite_frames = SubResource("SpriteFrames_nnhmv")
+animation = &"blink"
+autoplay = "blink"
+
+[node name="TextBox" type="RichTextLabel" parent="Control/MarginContainer/DialogueBox"]
+z_index = 2
+layout_mode = 0
+offset_left = 109.0
+offset_top = 106.0
+offset_right = 1809.0
+offset_bottom = 239.0
+focus_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("10_oyntq")
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 0
+theme_override_styles/focus = SubResource("StyleBoxFlat_dlptp")
+selection_enabled = true
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="NameTextBox" type="RichTextLabel" parent="Control/MarginContainer/DialogueBox"]
+z_index = 3
+layout_mode = 0
+offset_left = 1439.0
+offset_top = 29.0
+offset_right = 1840.0
+offset_bottom = 82.0
+theme_override_fonts/normal_font = ExtResource("5_xku1p")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "TENTARA BELANDA"
+fit_content = true
+autowrap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]

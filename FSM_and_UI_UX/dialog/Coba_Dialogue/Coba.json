@@ -1,0 +1,18 @@
+[
+ {"name": "[center]SOERJO[/center]", "id": 1, "text": "Lihat bendera itu!", "Color": "white", 
+	"Keterangan": "Normal", "PosNama" : "kiri", "tokoh" : ["SOERJO", "PEMUDA 1"]},
+ {"name": "[center]PEMUDA 1[/center]", "id": 2, "text": "Mereka bermaksud menjajah kita lagi!", "Color": "white", 
+	"Keterangan": "Normal", "PosNama" : "kanan", "tokoh" : ["SOERJO", "PEMUDA 1"]},
+ {"name": "[center]PEMUDA 2[/center]", "id": 3, "text": "Cepat, beri tahu yang lain", "Color": "white", 
+	"Keterangan": "Normal", "PosNama" : "kanan", "tokoh" : ["", "PEMUDA 2"]},
+ {"name": "[center]PEMUDA 1[/center]", "id": 4, "text": "Cepat turunkan bendera itu !", "Color": "white", 
+	"Keterangan": "Normal", "PosNama" : "kiri", "tokoh" : ["PEMUDA 1", "PEMUDA 2"]},
+ {"name": "[center]TENTARA BELANDA[/center]", "id": 5, "text": "Bukan urusan kalian.", "Color": "white", 
+	"Keterangan": "Normal", "PosNama" : "kanan", "tokoh" : ["", "TENTARA BELANDA"]},
+{"name" : "[center]PEMUDA 2[/center]", "id": 6, "text": "Kalian bermaksud menjajah kami lagi?", "Color": "white", 
+	"Keterangan": "Normal", "PosNama" : "kiri", "tokoh" : ["PEMUDA 2", "TENTARA BELANDA"]},
+{"name" : "[center]PEMUDA 1[/center]", "id": 7, "text": "Jika kalian tidak menurunkan benderanya, kami yang akan menurunkan paksa bendera itu!", "Color": "white", 
+	"Keterangan": "Normal", "PosNama" : "kiri", "tokoh" : ["PEMUDA 1", "TENTARA BELANDA"]},
+{"name" : "[center]TENTARA BELANDA[/center]", "id": 8, "text": "Sebaiknya kalian tidak mencari gara-gara!", "Color": "white", 
+	"Keterangan": "Normal", "PosNama" : "kanan", "tokoh" : ["", "TENTARA BELANDA"]}
+] 
