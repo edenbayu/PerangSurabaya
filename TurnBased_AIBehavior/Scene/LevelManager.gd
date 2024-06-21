@@ -3,14 +3,13 @@ extends Node2D
 #var turnManager = TurnManager.new()
 @onready var UI_CONTROLLER = $Control/Button
 @onready var ui_container = $Control/TurnBasedUI/TurnBasedIcons
+@onready var turn_based = $Control/TurnBasedUI
 @onready var label = $Control/Label
 @onready var timer = $Timer
 @onready var player = $GameBoard/Player
 @onready var enemy = $GameBoard/Enemy
 @onready var gameboard = $GameBoard
 @onready var camera = $Camera2D
-
-enum {ALLY_TURN, ENEMY_TURN}
 
 signal enemy_turn_started(icon: TextureRect)
 signal ally_turn_started
@@ -22,18 +21,18 @@ var _active_unit: Unit
 var turn_index := 0
 var active_icon : TextureRect
 
-var wait_time_test := 3.0
+var wait_time_test := 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_reinitialize()
+	turn_based.size.x += (len(ui_container.get_children()) - 1) * ui_container.size.x
 	gameboard._select_unit(_active_unit)
 	label.text = "It's your turn: " + str(_units[turn_index].nama)
 
 func set_turn():
 	var unit_status = _units[turn_index].unit_role
 	_active_icon()
-	print("Active icon: ", _icons[turn_index])
 	if unit_status == "ally":
 		emit_signal("ally_turn_started", _active_unit)
 	elif unit_status == "enemy":
@@ -65,7 +64,6 @@ func _reinitialize() -> void:
 		_icons.append(unit_texture)
 		unit_texture.texture = unit.inactive_icon
 	_icons[turn_index].is_active = true
-	print(_units)
 	_active_icon()
 
 func _reinitialize_icon() -> void:
@@ -81,13 +79,11 @@ func _sort_turn(a: Unit, b: Unit) -> bool:
 # Signal handler for ally turn started
 func _on_ally_turn_started(unit: Unit) -> void:
 	gameboard._select_unit(unit)
-	print("It's your turn! Unit:", unit.nama)
 	label.text = "It's your turn: " + str(unit.nama)
 	UI_CONTROLLER.visible = true
 
 # Signal handler for enemy turn started
 func _on_enemy_turn_started(unit: Unit) -> void:
-	print("It's enemy's turn! Unit:", unit.nama)
 	label.text = "It's your enemy turn: " + str(unit.nama)
 	UI_CONTROLLER.visible = false
 	timer.wait_time = wait_time_test

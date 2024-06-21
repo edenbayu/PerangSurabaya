@@ -1,10 +1,28 @@
-[gd_scene load_steps=8 format=3 uid="uid://bcbj38fvkj2b5"]
+[gd_scene load_steps=11 format=3 uid="uid://bcbj38fvkj2b5"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_2t8lw"]
 [ext_resource type="Texture2D" uid="uid://b21hd1c4am5kj" path="res://UI_Assets/Icons/shadow.png" id="2_ethml"]
+[ext_resource type="AnimationLibrary" uid="uid://cctwlf7io0nqq" path="res://Resources/Soerjo.res" id="2_kdsec"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wdqu4"]
 radius = 13.9393
+
+[sub_resource type="Animation" id="Animation_2mx2d"]
+resource_name = "soerjo_idle"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
 
 [sub_resource type="Animation" id="Animation_hoscp"]
 length = 0.001
@@ -36,29 +54,19 @@ tracks/0/keys = {
 "values": [2, 3, 4, 5]
 }
 
-[sub_resource type="Animation" id="Animation_2mx2d"]
-resource_name = "soerjo_idle"
-length = 0.7
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_15xbu"]
 _data = {
+"Idle": SubResource("Animation_2mx2d"),
 "RESET": SubResource("Animation_hoscp"),
-"new_animation": SubResource("Animation_ygpso"),
-"soerjo_idle": SubResource("Animation_2mx2d")
+"new_animation": SubResource("Animation_ygpso")
 }
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_1xpj7"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ak378"]
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_1xpj7")
+states/Idle/position = Vector2(635, 100)
+states/Start/position = Vector2(326, 100)
 
 [node name="Soerjo" type="CharacterBody2D"]
 z_index = 1
@@ -79,9 +87,19 @@ shape = SubResource("CircleShape2D_wdqu4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_15xbu")
+"": SubResource("AnimationLibrary_15xbu"),
+"Soerjo": ExtResource("2_kdsec")
 }
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0.545098, 0.545098, 0.545098, 0.462745)
 texture = ExtResource("2_ethml")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_15xbu"),
+"Soerjo": ExtResource("2_kdsec")
+}
+tree_root = SubResource("AnimationNodeStateMachine_ak378")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Idle/blend_position = Vector2(-0.992, 0.026455)

@@ -24,12 +24,12 @@ func _ready() -> void:
 	_initiallize_unit_pos()
 	_reinitialize()
 	unitPath.clear_cells(grid)
-	#_update()
+	_update()
 
 func _process(delta):
 	_update()
 
-## Clears, and refills the `_units` dictionary with game objects that are on the board.
+## Clears, and refills the `_units` dictionary wit	h game objects that are on the board.
 func _reinitialize() -> void:
 	_units.clear()
 
@@ -222,12 +222,13 @@ func _update() -> void:
 		var unit = ordering[i]
 		# Assign Z index based on the index in the sorted list
 		unit.z_index = i
+		#print("Units order: " + str(unit.cell)  + " " + str(unit.z_index)+ " " + str(unit.nama))
 
 func _sort_index(a: Unit, b: Unit) -> bool:
-	if a.cell.x != b.cell.x:
-		return a.cell.x < b.cell.x
-	else:
+	if a.cell.y != b.cell.y:
 		return a.cell.y < b.cell.y
+	else:
+		return a.cell.x < b.cell.x
 
 func _on_attack():
 	_attack_cells = get_attack_range_cells(_active_unit)

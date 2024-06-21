@@ -5,8 +5,11 @@ extends CharacterBody2D
 signal walk_finished
 
 @export var Data : UnitData
+@export var _animationLibrary : AnimationLibrary
+
 @onready var _sprite = $Sprite2D
 @onready var _animation = $AnimationPlayer
+@onready var path = $"../../UnitPath"
 
 var attack_range : int
 
@@ -68,11 +71,11 @@ func _ready():
 	inactive_icon = Data.inactive_icon
 	unit_role = Data.unit_role
 	icon = Data.icon
-	_animation.play("soerjo_idle")
+	_animation.add_animation_library(nama, _animationLibrary)
+	_animation.play("Idle")
 
 func walk(new_cell: Vector2):
 	_is_walking = true
-	cell = new_cell
 
 func _process(delta: float):
 	#Process unit walk code
@@ -80,7 +83,8 @@ func _process(delta: float):
 		_is_walking = false
 		emit_signal("walk_finished")
 	if _is_walking:
-		var target_pos = walk_coordinates.front()
+		var target_pos = walk_coordinates.front() 
+		cell = path.local_to_map(target_pos)
 		position = position.move_toward(target_pos, move_speed*delta)
 		if position == target_pos:
 			walk_coordinates.pop_front()

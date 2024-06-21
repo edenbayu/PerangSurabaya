@@ -23,7 +23,6 @@ func get_walk_path(cell_start: Vector2, cell_end: Vector2) -> void:
 	clear()
 	current_path = _pathfinder.calculate_point_paths(cell_start, cell_end)
 
-
 func get_walkable_cells() -> Array:
 	var map_rect = Rect2i(grid.start_rect, grid.tilemap_size)
 	var vectors_inside :Array = []
