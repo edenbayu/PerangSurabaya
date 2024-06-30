@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Turn Based Mechanism"
-run/main_scene="res://Scene/TurnManager.tscn"
+run/main_scene="res://Coba_Dialogue/CobaDialog.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 

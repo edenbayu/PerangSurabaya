@@ -1,10 +1,11 @@
-
+class_name DialogueManager
 extends Control
 #READ JSON FILE
 @export_category("PATH TO JSON DIALOGUE")
 @export var json_path = "json path here"
 @export_category("PORTRAITS")
 @export var character_portraits : Array[Texture2D]
+@export var scene_background : Array[Texture2D]
 #ONREADY
 @onready var text_box : RichTextLabel = $Control/MarginContainer/DialogueBox/TextBox
 @onready var name_box : RichTextLabel = $Control/MarginContainer/DialogueBox/NameTextBox
@@ -12,6 +13,9 @@ extends Control
 @onready var portrait_kanan : TextureRect = $Control/Potrait2
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 @onready var name_box_container : TextureRect = $Control/MarginContainer/DialogueBox/NameBox
+@onready var background : TextureRect = $Background
+@onready var trans_text : RichTextLabel = $Transition/TransitionText
+@onready var transition : TextureRect = $Transition
 #VARS
 var text_speed :float
 var dialogue = []   #this is where we will store the data of our json
@@ -21,22 +25,35 @@ var current_color : String  #Color of the text
 var posisi_nama : String #Menentukan posisi name box
 var nama_portrait_kanan : String
 var nama_portrait_kiri : String
+var current_background : int
+
+#Animation
+@export var is_faded_black : bool = true
 #SIGNAL
 signal write_dialogue
  
 func _ready():
+	is_faded_black = true
 	text_box.visible_characters = 0
+	trans_text.visible_characters = 0
 	#Use this function whenever you want your d ialogue to start.
 	start_dialogue(json_path)
  
 func _process(delta):
+	print(is_faded_black)
 	text_box.visible_ratio += set_progress_ratio()
+	#if is_faded_black:
+		#trans_text.visible_ratio += show_transition_text()
+	#if trans_text.visible_ratio >= 1:
+		#is_faded_black = false
 
 func _input(event):
 	#We advance the dialogue with left click or a key
 	#You will need to add "interact" to your input map in project settings
 	if event.is_action_pressed("klik_mouse_kiri"):
-		advance_dialogue()
+		_transition()
+		if is_faded_black:
+			advance_dialogue()
 
 func set_progress_ratio() -> float:
 	var text_length = text_box.text.length()
@@ -44,7 +61,18 @@ func set_progress_ratio() -> float:
 		return text_speed / text_length
 	else:
 		return 0.0
+
+func show_transition_text() -> float:
+	var text_length = trans_text.text.length()
+	if text_length > 0:
+		return 0.05 / text_length
+	else:
+		return 0.0
  
+func fade_out() -> void:
+	animation_player.play("fade_out")
+	advance_dialogue()
+
 #LOAD THE JSON FILE INTO A READABLE FORMAT FOR GODOT
 func load_dialogue(path : String):
 	var json_as_text = FileAccess.get_file_as_string(path)
@@ -71,6 +99,9 @@ func start_dialogue(path : String):
 		nama_portrait_kanan = dialogue[index]['tokoh'][1]
 		posisi_nama = dialogue[index]['PosNama']
 		id = dialogue[index]['id']
+		current_background = dialogue[index]['BG']
+		
+		_setup_background()
 		_check_posisi_nama()
 		check_for_color()
 		check_for_potrait_kiri()
@@ -97,13 +128,15 @@ func advance_dialogue():
 				id = dialogue[index]['id']
 				current_color = dialogue[index]['Color']
 				posisi_nama = dialogue[index]['PosNama']
+				current_background = dialogue[index]['BG']
+				_setup_background()
 				_check_posisi_nama()
 				check_for_potrait_kiri()
 				check_for_potrait_kanan()
 				check_for_color()
 			#If we are at the last line of dialogue, the scene deletes itself and we end.
-			else : 
-				queue_free()
+			#else : 
+				#queue_free()
  
 func check_for_potrait_kiri():
 	match nama_portrait_kiri:
@@ -112,6 +145,10 @@ func check_for_potrait_kiri():
 		"PEMUDA 2" : portrait_kiri.texture = character_portraits [2]
 		"TENTARA BELANDA" : portrait_kiri.texture = character_portraits [3]
 		"" : portrait_kiri.texture = character_portraits [4]
+		"SUDIRMAN" : portrait_kiri.texture = character_portraits [5]
+		"PLOEGMAN" : portrait_kiri.texture = character_portraits [6]
+		"SIDIK" : portrait_kiri.texture = character_portraits [7]
+		"HARYONO" : portrait_kiri.texture = character_portraits [8]
 
 func check_for_potrait_kanan():
 	match nama_portrait_kanan:
@@ -120,7 +157,10 @@ func check_for_potrait_kanan():
 		"PEMUDA 2" : portrait_kanan.texture = character_portraits [2]
 		"TENTARA BELANDA" : portrait_kanan.texture = character_portraits [3]
 		"" : portrait_kanan.texture = character_portraits [4]
-
+		"SUDIRMAN" : portrait_kanan.texture = character_portraits [5]
+		"PLOEGMAN" : portrait_kanan.texture = character_portraits [6]
+		"SIDIK" : portrait_kanan.texture = character_portraits [7]
+		"HARYONO" : portrait_kanan.texture = character_portraits [8]
 
 #WE CHECK THE COLOR GIVEN IN OUR JSON, AND CHANGE THE TEXT BASED ON THE STRING PROVIDED
 func check_for_color():
@@ -156,7 +196,22 @@ func _check_posisi_nama():
 			#name_box.position.x = 960
 #YOU CAN ADD AN ARROW THAT INDICATES YOUR DIALOGUE IS DONE TYPING HERE
 #I DON'T HAVE ONE FOR THE EXAMPLE SO I WILL LEAVE IT BLANK
-func _on_animation_player_animation_finished(anim_name):
-	#Example:
-	#end_arrow_texture.visible = true
-	pass
+func _setup_background():
+	match current_background:
+		0 :
+			background.texture = scene_background[0]
+		1 :
+			background.texture = scene_background[1]
+
+func _transition():
+	match id:
+		10:
+			is_faded_black = false
+			animation_player.play("transition")
+			show_transition_text()
+func _transition1():
+	match id:
+		33:
+			is_faded_black = false
+			animation_player.play("transition")
+			show_transition_text()

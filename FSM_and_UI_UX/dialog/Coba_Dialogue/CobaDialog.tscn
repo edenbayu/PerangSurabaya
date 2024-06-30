@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bgehxm7k1l5w1"]
+[gd_scene load_steps=37 format=3 uid="uid://bgehxm7k1l5w1"]
 
 [ext_resource type="Script" path="res://Coba_Dialogue/coba_dialog.gd" id="1_opu30"]
 [ext_resource type="Texture2D" uid="uid://ddkqx131fjcpr" path="res://Coba_Dialogue/Soerjo_Portrait.png" id="2_l0s0g"]
@@ -9,8 +9,11 @@
 [ext_resource type="FontFile" uid="uid://c583mm1xbwni5" path="res://I-pixel-u.ttf" id="5_xku1p"]
 [ext_resource type="Texture2D" uid="uid://c17arkmh2kfib" path="res://Coba_Dialogue/TextBox.png" id="6_dbqmv"]
 [ext_resource type="Texture2D" uid="uid://cs4aq8fiq6m7n" path="res://Coba_Dialogue/namebox.png" id="7_1h7uy"]
+[ext_resource type="Texture2D" uid="uid://hudbfiw6h8ex" path="res://Coba_Dialogue/logmen_Portrait.png" id="7_6fdxk"]
+[ext_resource type="Texture2D" uid="uid://dt5ilejsk5yjk" path="res://LuarHotel.png" id="7_vyomv"]
 [ext_resource type="Texture2D" uid="uid://ca76qy8whvuqm" path="res://Sidik.png" id="7_x1gun"]
 [ext_resource type="FontFile" uid="uid://88daejmocvlh" path="res://DePixelBreit.ttf" id="10_oyntq"]
+[ext_resource type="Texture2D" uid="uid://ccardshowgvpy" path="res://Coba_Dialogue/Transition.png" id="13_31t6u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o44gs"]
 atlas = ExtResource("6_dbqmv")
@@ -135,6 +138,122 @@ animations = [{
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dlptp"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
+[sub_resource type="Animation" id="Animation_6a77w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_orv3p"]
+resource_name = "fade_out"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition/TransitionText:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:is_faded_black")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_72nvk"]
+resource_name = "new_animation"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:is_faded_black")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Transition/TransitionText:visible_characters")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.5, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 39]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fade_out"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kc2js"]
+_data = {
+"RESET": SubResource("Animation_6a77w"),
+"fade_out": SubResource("Animation_orv3p"),
+"transition": SubResource("Animation_72nvk")
+}
+
 [node name="CanvasLayer" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -146,15 +265,18 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_opu30")
 json_path = "res://Coba_Dialogue/Coba.json"
-character_portraits = Array[Texture2D]([ExtResource("2_l0s0g"), ExtResource("7_x1gun"), ExtResource("4_5u4lh"), ExtResource("5_msc1k"), null])
+character_portraits = Array[Texture2D]([ExtResource("2_l0s0g"), ExtResource("7_x1gun"), ExtResource("4_5u4lh"), ExtResource("5_msc1k"), null, ExtResource("2_n20fs"), ExtResource("7_6fdxk"), ExtResource("7_x1gun"), ExtResource("2_l0s0g")])
+scene_background = Array[Texture2D]([ExtResource("7_vyomv"), ExtResource("5_cflk8")])
+is_faded_black = false
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(0.588235, 0.588235, 0.588235, 1)
 layout_mode = 0
 offset_left = -960.0
 offset_top = -539.0
 offset_right = 960.0
 offset_bottom = 541.0
-texture = ExtResource("5_cflk8")
+texture = ExtResource("7_vyomv")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
@@ -252,5 +374,37 @@ fit_content = true
 autowrap_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kc2js")
+}
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Transition" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 4
+layout_mode = 0
+offset_left = -960.0
+offset_top = -539.0
+offset_right = 960.0
+offset_bottom = 541.0
+texture = ExtResource("13_31t6u")
+
+[node name="TransitionText" type="RichTextLabel" parent="Transition"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -787.5
+offset_top = -42.5
+offset_right = 787.5
+offset_bottom = 42.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("10_oyntq")
+theme_override_font_sizes/normal_font_size = 60
+text = "Sementara itu, di dalam Hotel Yamato..."
+visible_characters = 0
+visible_ratio = 0.0
